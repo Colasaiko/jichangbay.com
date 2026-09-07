@@ -88,7 +88,7 @@
           </thead>
           <tbody>
             <% if (site.data.providers) { %>
-              <% site.data.providers.sort((a, b) => a.ranking - b.ranking).forEach(function(p) { %>
+              <% site.data.providers.forEach(function(p) { %>
                 <tr>
                   <td class="brand-name">
                     <img src="<%= p.logo %>" alt="<%= p.name %> logo" class="table-logo">
@@ -110,7 +110,7 @@
 
     <!-- Brands Sections -->
     <% if (site.data.providers) { %>
-      <% site.data.providers.sort((a, b) => a.ranking - b.ranking).forEach(function(p) { %>
+      <% site.data.providers.forEach(function(p) { %>
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header">
             <img src="<%= p.logo %>" alt="<%= p.name %>" class="provider-logo">
@@ -132,7 +132,7 @@
             <div class="pros">
               <h4>优点</h4>
               <ul>
-                <% p.advantages.forEach(function(adv) { %>
+                <% (p.features || []).forEach(function(adv) { %>
                   <li><%= adv %></li>
                 <% }) %>
               </ul>
@@ -140,7 +140,7 @@
             <div class="cons">
               <h4>缺点</h4>
               <ul>
-                <% p.disadvantages.forEach(function(dis) { %>
+                <% (p.features || []).forEach(function(dis) { %>
                   <li><%= dis %></li>
                 <% }) %>
               </ul>
@@ -205,7 +205,7 @@
         <li><a href="#recommendations" class="toc-link">快速推荐</a></li>
         <li><a href="#comparison" class="toc-link">参数对比表</a></li>
         <% if (site.data.providers) { %>
-          <% site.data.providers.sort((a, b) => a.ranking - b.ranking).forEach(function(p) { %>
+          <% site.data.providers.forEach(function(p) { %>
             <li><a href="#provider-<%= p.slug %>" class="toc-link toc-child"><%= p.name %></a></li>
           <% }) %>
         <% } %>
