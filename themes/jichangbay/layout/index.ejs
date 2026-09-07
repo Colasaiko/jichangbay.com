@@ -52,21 +52,30 @@
     <section id="recommendations" class="section-block">
       <h2>快速推荐</h2>
       <div class="cards-grid">
+        <% const recDaily = (site.data.providers || []).find(p => (p.bestFor || []).includes('低预算')) || (site.data.providers || [])[0]; %>
+        <% if (recDaily) { %>
         <div class="card">
           <h3>适合日常使用</h3>
-          <p>性价比高，适合看视频、查资料。</p>
-          <a href="#provider-example-a">查看 示例机场 A</a>
+          <p>性价比高，低预算入门首选。</p>
+          <a href="#provider-<%= recDaily.slug %>">查看 <%= recDaily.name %></a>
         </div>
+        <% } %>
+        <% const recGaming = (site.data.providers || []).find(p => (p.bestFor || []).includes('专线低延迟') && p.slug !== (recDaily && recDaily.slug)) || (site.data.providers || [])[1]; %>
+        <% if (recGaming) { %>
         <div class="card">
           <h3>适合重度用户/游戏</h3>
-          <p>专线低延迟，极致体验。</p>
-          <a href="#provider-example-b">查看 示例网络 B</a>
+          <p>全 IPLC/IEPL 专线低延迟，晚高峰稳定。</p>
+          <a href="#provider-<%= recGaming.slug %>">查看 <%= recGaming.name %></a>
         </div>
+        <% } %>
+        <% const recTraffic = (site.data.providers || []).find(p => (p.bestFor || []).includes('大流量') && p.slug !== (recDaily && recDaily.slug) && p.slug !== (recGaming && recGaming.slug)) || (site.data.providers || [])[2]; %>
+        <% if (recTraffic) { %>
         <div class="card">
-          <h3>注重隐私安全</h3>
-          <p>老牌海外服务商，安全可靠。</p>
-          <a href="#provider-example-c">查看 示例 VPN C</a>
+          <h3>海量大流量 / 多设备</h3>
+          <p>TB级大流量池，多设备不限制畅享。</p>
+          <a href="#provider-<%= recTraffic.slug %>">查看 <%= recTraffic.name %></a>
         </div>
+        <% } %>
       </div>
     </section>
 
@@ -89,16 +98,19 @@
           <tbody>
             <% if (site.data.providers) { %>
               <% site.data.providers.forEach(function(p) { %>
+                <% const firstPlan = p.plans && p.plans[0]; %>
+                <% const startPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
+                <% const startTraffic = p.traffic || (firstPlan ? firstPlan.traffic : '-'); %>
                 <tr>
                   <td class="brand-name">
-                    <img src="<%= p.logo %>" alt="<%= p.name %> logo" class="table-logo">
+                    <img src="<%= p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0D8ABC&color=fff') %>" alt="<%= p.name %> logo" class="table-logo">
                     <%= p.name %>
                   </td>
-                  <td><%= p.price %></td>
-                  <td><%= p.traffic %></td>
-                  <td><%= p.nodes %></td>
-                  <td><%= p.bestFor %></td>
-                  <td><span class="rating-badge">★ <%= p.rating %></span></td>
+                  <td><%= startPrice %></td>
+                  <td><%= startTraffic %></td>
+                  <td><%= p.nodes || (p.features && p.features.some(f => f.includes('IEPL') || f.includes('IPLC')) ? 'IPLC/IEPL专线' : '优质专线') %></td>
+                  <td><%= Array.isArray(p.bestFor) ? p.bestFor.join(', ') : (p.bestFor || '-') %></td>
+                  <td><span class="rating-badge">★ <%= p.rating || '4.8' %></span></td>
                   <td><a href="#provider-<%= p.slug %>" class="btn btn-small">查看</a></td>
                 </tr>
               <% }) %>
@@ -111,45 +123,68 @@
     <!-- Brands Sections -->
     <% if (site.data.providers) { %>
       <% site.data.providers.forEach(function(p) { %>
+        <% const firstPlan = p.plans && p.plans[0]; %>
+        <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header">
-            <img src="<%= p.logo %>" alt="<%= p.name %>" class="provider-logo">
+            <img src="<%= p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0D8ABC&color=fff') %>" alt="<%= p.name %>" class="provider-logo">
             <div>
               <h3><%= p.name %></h3>
-              <p class="provider-short"><%= p.shortDescription %></p>
+              <p class="provider-short"><%= p.shortDescription || (p.bestFor ? p.bestFor.join(' · ') : '') %></p>
             </div>
           </div>
           <div class="provider-meta">
-            <span class="meta-item"><strong>价格:</strong> <%= p.price %></span>
-            <span class="meta-item"><strong>流量:</strong> <%= p.traffic %></span>
-            <span class="meta-item"><strong>协议:</strong> <%= p.protocol %></span>
-            <span class="meta-item"><strong>设备数:</strong> <%= p.devices %></span>
+            <span class="meta-item"><strong>价格:</strong> <%= displayPrice %></span>
+            <span class="meta-item"><strong>优惠码:</strong> <%= p.coupon %><%= p.couponDiscount ? (' (' + p.couponDiscount + ')') : '' %></span>
+            <span class="meta-item"><strong>AI 支持:</strong> <%= p.aiSupport %></span>
+            <span class="meta-item"><strong>流媒体:</strong> <%= p.streamingSupport %></span>
+            <span class="meta-item"><strong>设备支持:</strong> <%= p.clientSupport %></span>
           </div>
-          <div class="provider-desc">
-            <p><%= p.description %></p>
+          <% if (p.features && p.features.length) { %>
+          <div class="provider-features" style="margin: 15px 0;">
+            <h4>核心优势与特性</h4>
+            <ul>
+              <% p.features.forEach(function(adv) { %>
+                <li><%= adv %></li>
+              <% }) %>
+            </ul>
           </div>
-          <div class="provider-pros-cons">
-            <div class="pros">
-              <h4>优点</h4>
-              <ul>
-                <% (p.features || []).forEach(function(adv) { %>
-                  <li><%= adv %></li>
+          <% } %>
+          <% if (p.plans && p.plans.length) { %>
+          <div class="provider-plans-table" style="margin: 15px 0; overflow-x: auto;">
+            <h4>套餐资费详情</h4>
+            <table class="plans-table" style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+              <thead>
+                <tr style="background: rgba(0,0,0,0.05); text-align: left;">
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">套餐名称</th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">流量</th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">月付</th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">季付</th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">半年付</th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">年付</th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">一次性/不限时</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% p.plans.forEach(function(pl) { %>
+                  <tr>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.name %></td>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.traffic %></td>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.monthly || '-' %></td>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.quarterly || '-' %></td>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.semiannual || '-' %></td>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.annual || '-' %></td>
+                    <td style="padding: 6px 10px; border: 1px solid #ddd;"><%= pl.oneTime || '-' %></td>
+                  </tr>
                 <% }) %>
-              </ul>
-            </div>
-            <div class="cons">
-              <h4>缺点</h4>
-              <ul>
-                <% (p.features || []).forEach(function(dis) { %>
-                  <li><%= dis %></li>
-                <% }) %>
-              </ul>
-            </div>
+              </tbody>
+            </table>
           </div>
-          <div class="provider-action">
-            <a href="<%= p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary">访问官网</a>
-            <% if(p.affiliateUrl) { %>
-               <!-- 有推广链接可用 -->
+          <% } %>
+          <div class="provider-action" style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary">访问官网 / 注册购买</a>
+            <% if (p.macDownload) { %>
+              <a href="<%= p.macDownload %>" target="_blank" rel="nofollow noopener" class="btn btn-outline">Mac 客户端下载</a>
             <% } %>
           </div>
         </section>
