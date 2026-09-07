@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title %></title>
+  <meta name="description" content="<%= config.description %>">
+  <meta name="keywords" content="<%= config.keywords %>">
+  <% if (page.title === '404') { %>
+  <meta name="robots" content="noindex, nofollow">
+  <% } %>
+  <link rel="canonical" href="<%= config.url %>/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= config.title %>">
+  <meta property="og:description" content="<%= config.description %>">
+  <meta property="og:url" content="<%= config.url %>/">
+  <meta property="og:site_name" content="<%= config.title %>">
+  <meta property="og:image" content="<%= config.url %>/logo.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- Schema JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "<%= config.url %>/",
+    "name": "<%= config.title %>",
+    "description": "<%= config.description %>",
+    "dateModified": "<%= config.lastUpdated %>"
+  }
+  </script>
+</head>
+<body>
+  <%- body %>
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+</body>
+</html>

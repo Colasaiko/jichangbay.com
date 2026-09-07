@@ -1,0 +1,110 @@
+- name: 示例机场 A
+  slug: example-a
+  logo: https://ui-avatars.com/api/?name=A&background=0D8ABC&color=fff
+  shortDescription: DEMO DATA / REPLACE LATER - 适合日常使用的高性价比机场。
+  description: 这是一段详细的描述文字，用于介绍示例机场A的优势、历史和特点。这是一个Demo数据，以后请替换。
+  price: 15 CNY / 月
+  traffic: 100 GB
+  billing: 月付 / 季付 / 年付
+  nodes: 50+
+  regions: 香港, 日本, 新加坡, 美国
+  devices: 3
+  protocol: Shadowsocks, Vmess
+  clientSupport: Clash, Shadowrocket, Quantumult X, Surge
+  aiSupport: ChatGPT, Claude 支持
+  streamingSupport: Netflix, Disney+, YouTube Premium
+  gamingSupport: 中等
+  advantages: 
+    - 价格亲民
+    - 节点稳定
+    - 支持流媒体解锁
+  disadvantages:
+    - 晚高峰偶有波动
+    - 节点数量一般
+  bestFor: 日常浏览, 视频观看
+  notIdealFor: 竞技游戏
+  officialUrl: https://example.com/a
+  affiliateUrl: https://example.com/a?aff=123
+  coupon: JICHANGBAY2026
+  rating: 4.5
+  featured: true
+  updatedAt: '2026-09-07'
+  tags:
+    - 便宜
+    - 稳定
+  notes: 新用户专享8折优惠
+  ranking: 1
+
+- name: 示例网络 B
+  slug: example-b
+  logo: https://ui-avatars.com/api/?name=B&background=1D9E74&color=fff
+  shortDescription: DEMO DATA / REPLACE LATER - 专注高端线路的IPLC专线机场。
+  description: 示例网络B提供极低延迟的IPLC和IEPL专线，适合对网络要求极高的用户群体。此为演示数据。
+  price: 45 CNY / 月
+  traffic: 200 GB
+  billing: 月付 / 年付
+  nodes: 80+
+  regions: 香港, 日本, 新加坡, 台湾, 美国, 英国
+  devices: 不限
+  protocol: Trojan, Vless
+  clientSupport: Clash, Shadowrocket, Surge
+  aiSupport: 全面支持原生IP
+  streamingSupport: 全解锁
+  gamingSupport: 极佳 (IPLC)
+  advantages:
+    - 延迟极低
+    - 晚高峰不卡顿
+    - 适合游戏和外贸
+  disadvantages:
+    - 价格较高
+    - 流量单价贵
+  bestFor: 游戏玩家, 重度视频用户, 外贸
+  notIdealFor: 预算有限的用户
+  officialUrl: https://example.com/b
+  affiliateUrl: https://example.com/b?aff=123
+  coupon: 
+  rating: 4.8
+  featured: true
+  updatedAt: '2026-09-07'
+  tags:
+    - 高端
+    - 专线
+  notes: 提供免费试用 24 小时
+  ranking: 2
+
+- name: 示例 VPN C
+  slug: example-c
+  logo: https://ui-avatars.com/api/?name=C&background=2C3E50&color=fff
+  shortDescription: DEMO DATA / REPLACE LATER - 经典老牌海外 VPN，主打隐私安全。
+  description: 示例 VPN C 拥有全球数千台服务器，零日志政策，注重隐私保护。DEMO 数据，请在上线前修改。
+  price: $3.99 / 月
+  traffic: 不限
+  billing: 年付 / 两年付
+  nodes: 3000+
+  regions: 全球 90+ 国家
+  devices: 6
+  protocol: WireGuard, OpenVPN
+  clientSupport: Windows, Mac, iOS, Android, Linux, Router
+  aiSupport: 较好
+  streamingSupport: 较好，可能需切换节点
+  gamingSupport: 一般
+  advantages:
+    - 全球节点覆盖极广
+    - 自主开发客户端，小白易用
+    - 极强的隐私保护
+  disadvantages:
+    - 国内直连速度不如机场
+    - 会议期间容易被封锁
+  bestFor: 隐私极客, 海外华人, 需特定国家IP用户
+  notIdealFor: 追求极致速度和性价比的翻墙用户
+  officialUrl: https://example.com/c
+  affiliateUrl: https://example.com/c?aff=123
+  coupon: 
+  rating: 4.2
+  featured: false
+  updatedAt: '2026-09-07'
+  tags:
+    - 老牌VPN
+    - 隐私保护
+  notes: 30天退款保证
+  ranking: 3

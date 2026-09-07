@@ -1,0 +1,226 @@
+<div id="progress-bar"></div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      <a href="/">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12A10 10 0 1 1 12 2a10 10 0 0 1 10 10zM12 2v20M2 12h20M4.9 4.9l14.2 14.2M4.9 19.1 19.1 4.9"/></svg>
+        <span class="logo-text">机场湾 / JichangBay</span>
+      </a>
+    </div>
+    <nav class="desktop-nav">
+      <a href="#recommendations">推荐</a>
+      <a href="#comparison">对比</a>
+      <a href="#how-to-choose">指南</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <span class="drawer-title">目录</span>
+    <button class="drawer-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-content" id="mobileTocContent">
+    <!-- TOC cloned here -->
+  </div>
+</div>
+
+<main class="main-content container">
+  <article class="content-area">
+    
+    <!-- Hero Section -->
+    <section id="top" class="hero-section section-block">
+      <div class="hero-content">
+        <h1>2026 机场推荐与 VPN 使用指南</h1>
+        <p class="subtitle">整理和比较市面上最优质的网络服务提供商，助您畅享无界的网络体验。</p>
+        <div class="hero-actions">
+          <a href="#recommendations" class="btn btn-primary">查看 2026 推荐</a>
+          <a href="#comparison" class="btn btn-outline">快速对比</a>
+        </div>
+        <p class="update-time">最后更新时间：<%= config.lastUpdated %></p>
+      </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations" class="section-block">
+      <h2>快速推荐</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>适合日常使用</h3>
+          <p>性价比高，适合看视频、查资料。</p>
+          <a href="#provider-example-a">查看 示例机场 A</a>
+        </div>
+        <div class="card">
+          <h3>适合重度用户/游戏</h3>
+          <p>专线低延迟，极致体验。</p>
+          <a href="#provider-example-b">查看 示例网络 B</a>
+        </div>
+        <div class="card">
+          <h3>注重隐私安全</h3>
+          <p>老牌海外服务商，安全可靠。</p>
+          <a href="#provider-example-c">查看 示例 VPN C</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="section-block">
+      <h2>参数对比表</h2>
+      <div class="table-responsive">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>品牌</th>
+              <th>价格</th>
+              <th>流量</th>
+              <th>节点数</th>
+              <th>适合场景</th>
+              <th>评分</th>
+              <th>详情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (site.data.providers) { %>
+              <% site.data.providers.sort((a, b) => a.ranking - b.ranking).forEach(function(p) { %>
+                <tr>
+                  <td class="brand-name">
+                    <img src="<%= p.logo %>" alt="<%= p.name %> logo" class="table-logo">
+                    <%= p.name %>
+                  </td>
+                  <td><%= p.price %></td>
+                  <td><%= p.traffic %></td>
+                  <td><%= p.nodes %></td>
+                  <td><%= p.bestFor %></td>
+                  <td><span class="rating-badge">★ <%= p.rating %></span></td>
+                  <td><a href="#provider-<%= p.slug %>" class="btn btn-small">查看</a></td>
+                </tr>
+              <% }) %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Brands Sections -->
+    <% if (site.data.providers) { %>
+      <% site.data.providers.sort((a, b) => a.ranking - b.ranking).forEach(function(p) { %>
+        <section id="provider-<%= p.slug %>" class="section-block provider-section">
+          <div class="provider-header">
+            <img src="<%= p.logo %>" alt="<%= p.name %>" class="provider-logo">
+            <div>
+              <h3><%= p.name %></h3>
+              <p class="provider-short"><%= p.shortDescription %></p>
+            </div>
+          </div>
+          <div class="provider-meta">
+            <span class="meta-item"><strong>价格:</strong> <%= p.price %></span>
+            <span class="meta-item"><strong>流量:</strong> <%= p.traffic %></span>
+            <span class="meta-item"><strong>协议:</strong> <%= p.protocol %></span>
+            <span class="meta-item"><strong>设备数:</strong> <%= p.devices %></span>
+          </div>
+          <div class="provider-desc">
+            <p><%= p.description %></p>
+          </div>
+          <div class="provider-pros-cons">
+            <div class="pros">
+              <h4>优点</h4>
+              <ul>
+                <% p.advantages.forEach(function(adv) { %>
+                  <li><%= adv %></li>
+                <% }) %>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>缺点</h4>
+              <ul>
+                <% p.disadvantages.forEach(function(dis) { %>
+                  <li><%= dis %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+          <div class="provider-action">
+            <a href="<%= p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary">访问官网</a>
+            <% if(p.affiliateUrl) { %>
+               <!-- 有推广链接可用 -->
+            <% } %>
+          </div>
+        </section>
+      <% }) %>
+    <% } %>
+
+    <!-- How to Choose -->
+    <section id="how-to-choose" class="section-block">
+      <h2>如何选择适合自己的机场/VPN？</h2>
+      <p>选择合适的服务主要取决于您的核心需求：</p>
+      <ul>
+        <li><strong>日常查资料与看视频：</strong> 选择性价比高的常规线路机场，流量充足，价格实惠。</li>
+        <li><strong>外贸与游戏：</strong> 强烈建议选择拥有 IPLC/IEPL 专线的服务商，延迟极低且不易受封锁影响。</li>
+        <li><strong>隐私极客：</strong> 如果您经常处理敏感信息，传统的海外无日志 VPN 会更安全。</li>
+      </ul>
+    </section>
+
+    <!-- Knowledge -->
+    <section id="knowledge" class="section-block">
+      <h2>基础知识科普</h2>
+      <p><strong>什么是机场？</strong> 机场通常指提供代理节点（如 Shadowsocks、V2Ray、Trojan）的服务商，因早期很多服务商使用飞机图标而得名。机场速度通常快于传统VPN。</p>
+      <p><strong>专线是什么？</strong> 专线（如 IPLC）是直接在两地之间建立的物理/虚拟专用网络，不经过公网的长城防火墙审查，因此稳定性和延迟都极佳。</p>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section-block">
+      <h2>常见问题 (FAQ)</h2>
+      <div class="faq-item">
+        <h4>免费机场/VPN靠谱吗？</h4>
+        <p>天下没有免费的午餐。免费服务通常伴随着隐私泄露风险、广告弹窗甚至恶意软件。建议使用付费服务。</p>
+      </div>
+      <div class="faq-item">
+        <h4>敏感时期连不上怎么办？</h4>
+        <p>特殊时期公网线路容易被阻断。建议备用一个支持专线的服务商，或耐心等待服务商修复。</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section-block">
+      <h2>关于机场湾 (JichangBay)</h2>
+      <p>机场湾致力于为中文用户提供客观、清晰的科学上网指南与服务推荐。我们定期测试并更新榜单。</p>
+      <p><strong>利益相关声明：</strong> 本站部分链接可能包含推广（Affiliate）参数。当您通过这些链接购买时，我们可能会获得少量佣金，这有助于维持本站的运营。但我们承诺这不会影响我们的客观评价。</p>
+    </section>
+
+  </article>
+
+  <!-- Desktop TOC -->
+  <aside class="toc-area">
+    <div class="sticky-toc">
+      <h3>目录</h3>
+      <ul id="toc-list">
+        <li><a href="#top" class="toc-link">首页</a></li>
+        <li><a href="#recommendations" class="toc-link">快速推荐</a></li>
+        <li><a href="#comparison" class="toc-link">参数对比表</a></li>
+        <% if (site.data.providers) { %>
+          <% site.data.providers.sort((a, b) => a.ranking - b.ranking).forEach(function(p) { %>
+            <li><a href="#provider-<%= p.slug %>" class="toc-link toc-child"><%= p.name %></a></li>
+          <% }) %>
+        <% } %>
+        <li><a href="#how-to-choose" class="toc-link">选择指南</a></li>
+        <li><a href="#knowledge" class="toc-link">基础知识</a></li>
+        <li><a href="#faq" class="toc-link">常见问题</a></li>
+        <li><a href="#about" class="toc-link">关于我们</a></li>
+      </ul>
+      <a href="#top" class="back-to-top">↑ 返回顶部</a>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 机场湾 JichangBay. All Rights Reserved.</p>
+  </div>
+</footer>
