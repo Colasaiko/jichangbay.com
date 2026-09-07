@@ -88,3 +88,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Trigger once on load
   updateScroll();
 });
+
+
+  // Drawer TOC Logic
+  const tocBtn = document.getElementById('floating-toc-btn');
+  const overlay = document.getElementById('drawer-overlay');
+  const tocArea = document.querySelector('.toc-area');
+  const tocLinks = document.querySelectorAll('.toc-link, .back-to-top');
+
+  function toggleDrawer() {
+    tocArea.classList.toggle('drawer-open');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = tocArea.classList.contains('drawer-open') ? 'hidden' : '';
+  }
+
+  function closeDrawer() {
+    tocArea.classList.remove('drawer-open');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (tocBtn && overlay) {
+    tocBtn.addEventListener('click', toggleDrawer);
+    overlay.addEventListener('click', closeDrawer);
+  }
+
+  tocLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1500) {
+        closeDrawer();
+      }
+    });
+  });

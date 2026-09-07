@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -740,3 +740,78 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /* --- END COMPARISON TABLE OPTIMIZATIONS --- */
+
+
+/* Drawer TOC & Floating Button */
+.floating-toc-btn {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 40px; /* Or top: 110px */
+  background: var(--c-primary);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(8, 145, 178, 0.3);
+  z-index: 9998;
+  cursor: pointer;
+  align-items: center;
+  gap: 6px;
+}
+.floating-toc-btn:hover {
+  background: var(--c-primary-hover);
+}
+
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+.drawer-overlay.active {
+  display: block;
+}
+
+@media (max-width: 1499px) {
+  .main-content {
+    display: block;
+  }
+  
+  .toc-area {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    z-index: 10000;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px 10px;
+    overflow-y: auto;
+  }
+  
+  .toc-area.drawer-open {
+    right: 0;
+  }
+  
+  .floating-toc-btn {
+    display: flex;
+    top: 90px;
+    bottom: auto;
+  }
+  
+  /* Reset sticky TOC inside drawer */
+  .sticky-toc {
+    position: static;
+    height: auto;
+    overflow-y: visible;
+  }
+}
