@@ -507,22 +507,37 @@ h1, h2, h3, h4, h5, h6 {
 .comparison-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   text-align: left;
-  min-width: 800px; /* Force horizontal scroll on mobile */
+  min-width: 900px;
   font-size: 0.95rem;
 }
 
+.col-brand      { width: 19%; }
+.col-price      { width: 14%; }
+.col-traffic    { width: 11%; }
+.col-network    { width: 12%; }
+.col-scene      { width: 19%; }
+.col-highlights { width: 19%; }
+.col-detail     { width: 6%; }
+
 .comparison-table th, 
 .comparison-table td {
-  padding: 16px 12px;
-  border-bottom: 1px solid #e2e8f0;
+  box-sizing: border-box;
   vertical-align: middle;
+  padding: 18px 14px;
+  line-height: 1.5;
+  border-bottom: 0;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .comparison-table th {
   background-color: #f8fafc;
   color: #475569;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -534,38 +549,58 @@ h1, h2, h3, h4, h5, h6 {
 .brand-cell {
   display: flex;
   align-items: center;
-  gap: 12px;
-  white-space: nowrap;
+  gap: 10px;
+  min-height: 34px;
 }
 
 .table-logo {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 
 .brand-cell strong {
   color: #0f172a;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
+  line-height: 1.35;
 }
 
-.col-price, .col-traffic, .col-network, .col-bestfor {
+.col-price, .col-traffic, .col-network {
   color: #334155;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.col-scene {
+  line-height: 1.55;
+  color: #334155;
+}
+
+.col-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
 }
 
 .pill-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 8px;
   background-color: #e0f2fe;
   color: #0369a1;
-  padding: 4px 8px;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
-  margin: 2px;
+  white-space: nowrap;
+}
+
+.col-action {
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -586,7 +621,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-detail:hover {
   background-color: #0e7490;
-  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
