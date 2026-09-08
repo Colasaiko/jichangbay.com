@@ -241,6 +241,7 @@
                <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="noopener nofollow" class="btn btn-primary btn-block">前往购买</a>
             </div>
           </div>
+          <div class="provider-divider" style="border-bottom: 1px solid #e2e8f0; margin-top: 18px; margin-bottom: 24px;"></div>
         <% }) %>
       </div>
     </section>
@@ -415,7 +416,7 @@
       <% providers.forEach(function(p) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
         <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
-        <section id="provider-<%= p.slug %>"
+        <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header" style="justify-content: space-between; flex-wrap: wrap;">
             <div style="display:flex; align-items:center; gap:15px;">
               <img src="<%= getProviderMeta(p).logoSrc %>" alt="<%= p.name %>" class="provider-logo">
@@ -483,7 +484,7 @@
           <div class="provider-action" style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
             <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary">查看套餐 / 注册购买</a>
             <% if (p.macDownload) { %>
-              <a href="<%= p.macDownload %>" target="_blank" rel="nofollow noopener" class="btn btn-outline">Mac 客户端下载</a>
+              <a href="<%= p.macDownload %>" target="_blank" rel="nofollow noopener" class="btn mac-btn">Mac 客户端下载</a>
             <% } %>
           </div>
         </section>

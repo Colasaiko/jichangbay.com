@@ -1,0 +1,50 @@
+<section id="top" class="hero-section">
+      <h1>2026 机场推荐与 VPN 使用指南</h1>
+      <p class="hero-subtitle">集中整理机场与 VPN 服务的套餐价格、流量、线路、优惠与使用场景，帮助你更快找到适合自己的选择。</p>
+      <p class="hero-meta">最后更新时间: <%= config.lastUpdated %></p>
+      <div class="hero-actions">
+        <a href="#recommendations" class="btn btn-primary">快速选购</a>
+        <a href="#comparison" class="btn btn-outline-light">套餐对比</a>
+        <a href="#deals" class="btn btn-outline-light">当前优惠</a>
+      </div>
+    </section>
+
+    <!-- Quick Buy Section -->
+    <section id="recommendations" class="section-block">
+      <h2>2026 机场快速选购</h2>
+      <p style="margin-bottom: 20px; color: #334155;">按照预算、流量与使用场景快速找到适合自己的套餐，无需逐个查看全部品牌。</p>
+      
+          
+      <div class="quick-buy-grid">
+        <% providers.slice(0, 7).forEach((p, i) => {
+            const meta = getProviderMeta(p);
+        %>
+          <div class="card <%= i < 2 ? 'card-featured' : 'card-small' %>">
+            <div class="card-head">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-stats">
+              <span><%= meta.startPrice %></span>
+              <span><%= meta.startTraffic %></span>
+            </div>
+            <a href="#provider-<%= p.slug %>" class="btn btn-outline btn-block">查看套餐</a>
+          </div>
+        <% }) %>
+      </div>
+      
+      <div class="quick-tags-container" style="margin-top:24px;">
+        <h4 style="margin-bottom:12px;font-size:1rem;">按需求快速找：</h4>
+        <div class="quick-tags">
+          <button class="qt-btn" data-filter="budget-20">¥20/月以内</button>
+          <button class="qt-btn" data-filter="budget-30">¥30/月以内</button>
+          <button class="qt-btn" data-filter="budget-year">年付低价</button>
+          <button class="qt-btn" data-filter="traffic-200">100–200GB</button>
+          <button class="qt-btn" data-filter="traffic-500">500GB+</button>
+          <button class="qt-btn" data-filter="ai">AI 工具</button>
+          <button class="qt-btn" data-filter="stream">流媒体</button>
+          <button class="qt-btn" data-filter="onetime">不限时套餐</button>
+          <button class="qt-btn" data-filter="multidevice">多设备</button>
+          <button class="qt-btn" data-filter="iplc">专线线路</button>
+        </div>
+      </div>
+    </section>
