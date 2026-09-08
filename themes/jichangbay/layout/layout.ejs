@@ -18,22 +18,12 @@
   <meta property="og:description" content="<%= config.description %>">
   <meta property="og:url" content="<%= config.url %>/">
   <meta property="og:site_name" content="<%= config.title %>">
-  <meta property="og:image" content="<%= config.url %>/logo.png">
-
+  
   <!-- CSS -->
   <link rel="stylesheet" href="/css/style.css">
   
   <!-- Schema JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "url": "<%= config.url %>/",
-    "name": "<%= config.title %>",
-    "description": "<%= config.description %>",
-    "dateModified": "<%= config.lastUpdated %>"
-  }
-  </script>
+  
 </head>
 <body>
   <%- body %>

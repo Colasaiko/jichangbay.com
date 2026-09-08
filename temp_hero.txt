@@ -1,0 +1,13 @@
+<section id="top" class="hero-section">
+      <h1>2026 机场推荐与 VPN 使用指南</h1>
+      <p class="hero-subtitle">集中整理机场与 VPN 服务的套餐价格、流量、线路、优惠与使用场景，帮助你更快找到适合自己的选择。</p>
+      <p class="hero-meta">最后更新时间: <%= config.lastUpdated %></p>
+      <div class="hero-actions">
+        <a href="#recommendations" class="btn btn-primary">快速选购</a>
+        <a href="#comparison" class="btn btn-outline-light">套餐对比</a>
+        <a href="#deals" class="btn btn-outline-light">当前优惠</a>
+      </div>
+    </section>
+
+    <!-- Quick Buy Section -->
+    <section id="recommendations"

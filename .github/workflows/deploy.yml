@@ -38,6 +38,11 @@ jobs:
         run: |
           npx hexo clean
           npx hexo generate
+          if [ -n "$INDEXNOW_KEY" ]; then
+            echo "$INDEXNOW_KEY" > "public/${INDEXNOW_KEY}.txt"
+          fi
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
@@ -54,3 +59,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Checkout for IndexNow
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for IndexNow
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Submit IndexNow
+        run: node tools/submit-indexnow.js
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
