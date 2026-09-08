@@ -318,7 +318,7 @@
                <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" class="mc-logo">
                <strong><%= p.name %></strong>
             </div>
-            <div class="deal-discount"><%= p.couponDiscount || '专属优惠' %></div>
+            <div class="deal-discount"><%= p.couponDiscount || '优惠' %></div>
             <div class="deal-code">
                <span><%= p.coupon %></span>
                <button class="btn-copy-code" data-code="<%= p.coupon %>" aria-label="复制优惠码">复制优惠码</button>
@@ -474,7 +474,7 @@
                 <tr class="comp-tr" data-name="<%= p.name.toLowerCase() %>" data-price="<%= numPrice %>" data-traffic="<%= numTraffic %>" data-order="<%= index %>">
                   <td class="brand-name">
                     <div class="brand-cell">
-                      <img src="<%= logoSrc %>" alt="<%= p.name %>" class="table-logo">
+                      <img src="<%= logoSrc %>" alt="<%= p.name %>" class="table-logo" width="34" height="34" loading="lazy" decoding="async" style="object-fit:cover;">
                       <strong><%= p.name %></strong>
                     </div>
                   </td>
@@ -547,7 +547,7 @@
             %>
             <div class="mobile-card comp-card" data-name="<%= p.name.toLowerCase() %>" data-price="<%= numPrice %>" data-traffic="<%= numTraffic %>" data-order="<%= index %>">
               <div class="mc-header">
-                <img src="<%= logoSrc %>" alt="<%= p.name %>" class="mc-logo">
+                <img src="<%= logoSrc %>" alt="<%= p.name %>" class="mc-logo" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover;">
                 <strong class="mc-name"><%= p.name %></strong>
               </div>
               <div class="mc-body">

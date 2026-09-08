@@ -62,7 +62,7 @@
   - 专线低延迟
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/微风.png
+  logo: /images/logos/微风.webp
 - name: firefly
   slug: firefly
   relationship: own
@@ -126,7 +126,7 @@
   - 专线低延迟
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/Firefly.png
+  logo: /images/logos/Firefly.webp
 - name: 跨界云
   slug: kuajieyun
   relationship: own
@@ -187,7 +187,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/跨界.png
+  logo: /images/logos/跨界.webp
 - name: 闪跃
   slug: shanyue
   relationship: own
@@ -244,7 +244,7 @@
   - AI生产力
   - 4K流媒体
   updatedAt: '2026-09-07'
-  logo: /images/logos/闪跃.png
+  logo: /images/logos/闪跃.webp
 - name: 无忧链接
   slug: wuyoulianjie
   relationship: own
@@ -302,7 +302,7 @@
   - AI生产力
   - 4K流媒体
   updatedAt: '2026-09-07'
-  logo: /images/logos/无忧.png
+  logo: /images/logos/无忧.webp
 - name: 灵猫
   slug: lingmao
   relationship: own
@@ -376,7 +376,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/灵猫.png
+  logo: /images/logos/灵猫.webp
 - name: BitzNet
   slug: bitznet
   relationship: own
@@ -495,7 +495,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/飞猫.png
+  logo: /images/logos/飞猫.webp
 - name: SOGO 云
   slug: sogoyun
   relationship: own
@@ -631,7 +631,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/暮光加速.jpg
+  logo: /images/logos/暮光加速.webp
 - name: 星岛梦
   slug: xingdaomeng
   relationship: own
@@ -871,7 +871,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/光速云.png
+  logo: /images/logos/光速云.webp
 - name: U1S1
   slug: u1s1
   relationship: own
@@ -941,7 +941,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/U1S1.jpg
+  logo: /images/logos/U1S1.webp
 - name: 极连云
   slug: jilianyun
   relationship: own
@@ -1014,7 +1014,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/极连云.png
+  logo: /images/logos/极连云.webp
 - name: 光年梯
   slug: guangnianti
   relationship: own
@@ -1084,7 +1084,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/光年梯.jpg
+  logo: /images/logos/光年梯.webp
 - name: 一翻云
   slug: yifanyun
   relationship: own
@@ -1164,7 +1164,7 @@
   - AI生产力
   - 4K流媒体
   updatedAt: '2026-09-07'
-  logo: /images/logos/一翻云.png
+  logo: /images/logos/一翻云.webp
 - name: 二猫云
   slug: ermaoyun
   relationship: own
@@ -1235,7 +1235,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/二猫云.png
+  logo: /images/logos/二猫云.webp
 - name: 边缘节点
   slug: bianyuanjiedian
   relationship: own
@@ -1305,7 +1305,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/边缘节点.png
+  logo: /images/logos/边缘节点.webp
 - name: 可信云
   slug: kexinyun
   relationship: own
@@ -1382,7 +1382,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/可信云.png
+  logo: /images/logos/可信云.webp
 - name: 速界机场
   slug: sujiejichang
   relationship: own
@@ -1454,7 +1454,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/速界机场.png
+  logo: /images/logos/速界机场.webp
 - name: 快狸
   slug: kuaili
   relationship: own
@@ -1525,7 +1525,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/快狸.png
+  logo: /images/logos/快狸.webp
 - name: 飞V
   slug: feiv
   relationship: own
@@ -1614,7 +1614,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/飞V.png
+  logo: /images/logos/飞V.webp
 - name: 梯子云
   slug: tiziyun
   relationship: own
@@ -1702,7 +1702,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/梯子云.png
+  logo: /images/logos/梯子云.webp
 - name: WaveNet
   slug: wavenet
   relationship: own
@@ -1790,7 +1790,7 @@
   - 专线低延迟
   - 4K流媒体
   updatedAt: '2026-09-07'
-  logo: /images/logos/wavenet.jpg
+  logo: /images/logos/wavenet.webp
 - name: 灵动云
   slug: lingdongyun
   relationship: own
@@ -1880,7 +1880,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/灵动云.png
+  logo: /images/logos/灵动云.webp
 - name: 隐形人
   slug: yinxingren
   relationship: own
@@ -1968,7 +1968,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
-  logo: /images/logos/隐形人.png
+  logo: /images/logos/隐形人.webp
 - name: NanoCloud
   slug: nanocloud
   relationship: own
