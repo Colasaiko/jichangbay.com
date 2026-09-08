@@ -201,13 +201,15 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--c-deep);
 }
 .btn-outline {
-  background: transparent;
+  background: #ffffff;
   border: 1px solid var(--c-primary);
-  color: var(--c-primary);
+  color: var(--c-deep);
+  font-weight: 600;
 }
 .btn-outline:hover {
   background: var(--c-primary);
   color: white;
+  border-color: var(--c-primary);
 }
 
 .btn-small {
@@ -832,11 +834,11 @@ h1, h2, h3, h4, h5, h6 {
   .quick-buy-grid { grid-template-columns: 1fr; }
 }
 .card-head { font-size: 1.1rem; margin-bottom: 8px; color: var(--c-deep); }
-.card-stats { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; color: #475569; margin-bottom: 12px; }
+.card-stats { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; color: #334155; margin-bottom: 12px; font-weight: 500; }
 
 .quick-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.qt-btn { background: #f1f5f9; border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 999px; cursor: pointer; color: #475569; font-size: 0.85rem; transition: background 0.2s; }
-.qt-btn:hover { background: #e2e8f0; color: var(--c-primary); border-color: var(--c-primary); }
+.qt-btn { background: #f1f5f9; border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 999px; cursor: pointer; color: #334155; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+.qt-btn:hover { background: var(--c-primary); color: #ffffff; border-color: var(--c-primary); }
 
 .filter-controls { background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; }
 .filter-group { display: flex; flex-direction: column; gap: 6px; min-width: 150px; }
@@ -863,23 +865,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Independent Provider Cards */
-.provider-section {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 24px 32px;
-  margin-bottom: 32px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-  border-left: 4px solid var(--c-primary);
-}
 
-@media (max-width: 768px) {
-  .provider-section {
-    padding: 16px 20px;
-    border-radius: 8px;
-  }
-}
 
 /* Fix td flex issues */
 .tags-inner {
@@ -892,4 +878,62 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+
+/* Independent Provider Cards */
+.provider-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  border-left: 4px solid var(--c-primary);
+}
+
+.provider-section h3 {
+  color: #0f172a;
+  margin-top: 0;
+}
+
+.provider-section .provider-short {
+  color: #334155;
+}
+
+.provider-section .meta-item {
+  color: #334155;
+}
+
+.provider-section .meta-item strong {
+  color: #0f172a;
+}
+
+.provider-features h4, .provider-plans-table h4 {
+  color: #0f172a;
+}
+
+.provider-plans-table {
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .provider-section {
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+}
+
+
+.provider-section p, .provider-section li, .provider-section td, .provider-section th {
+  color: #0f172a;
+}
+.provider-section .meta-item, .provider-section .provider-short {
+  color: #334155;
+  font-weight: 500;
 }

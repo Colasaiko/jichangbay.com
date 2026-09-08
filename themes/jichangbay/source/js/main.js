@@ -273,16 +273,16 @@ document.addEventListener('DOMContentLoaded', () => {
                       </div>
                       
                       <div style="background:#f8fafc; border-radius:6px; padding:10px; margin-bottom:12px; border:1px solid #e2e8f0;">
-                          <div style="font-size:0.8rem; color:#64748b; margin-bottom:4px;">匹配套餐：</div>
+                          <div style="font-size:0.8rem; color:#334155; margin-bottom:4px;">匹配套餐：</div>
                           <div style="font-weight:600; color:var(--c-deep); font-size:1rem;">${p.matchedPlans[0].name}</div>
                           <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:0.9rem;">
                              <span style="color:#0ea5e9; font-weight:600;">${p.matchedPlans[0].priceStr}</span>
-                             <span style="color:#475569;">${p.matchedPlans[0].traffic}</span>
+                             <span style="color:#334155;">${p.matchedPlans[0].traffic}</span>
                           </div>
-                          ${p.matchedPlans.length > 1 ? `<div style="font-size:0.8rem; color:#94a3b8; margin-top:6px; border-top:1px dashed #cbd5e1; padding-top:6px;">另有 ${p.matchedPlans.length - 1} 个匹配套餐</div>` : ''}
+                          ${p.matchedPlans.length > 1 ? `<div style="font-size:0.8rem; color:#334155; margin-top:6px; border-top:1px dashed #cbd5e1; padding-top:6px;">另有 ${p.matchedPlans.length - 1} 个匹配套餐</div>` : ''}
                       </div>
     
-                      <div style="font-size:0.9rem;color:#475569;margin-bottom:12px;">
+                      <div style="font-size:0.9rem;color:#334155;margin-bottom:12px;">
                         <div>线路: ${p.network}</div>
                         <div style="margin-top:6px;">
                           ${p.tags.map(t=>`<span class="pill-badge">${t}</span>`).join('')}
