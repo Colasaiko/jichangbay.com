@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                   <div style="display:flex;gap:8px; margin-top:auto;">
                     <a href="#provider-${p.slug}" class="btn btn-outline" style="flex:1;text-align:center;padding:6px;">查看详情</a>
-                    <a href="${p.affUrl}" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;padding:6px;">前往购买</a>
+                    <a href="${p.affUrl}" target="_blank" rel="nofollow noopener" class="btn btn-primary" style="flex:1;text-align:center;padding:6px;">前往购买</a>
                   </div>
                 </div>
             `).join('');
