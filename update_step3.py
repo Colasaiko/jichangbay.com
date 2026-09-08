@@ -1,167 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Mobile drawer setup
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const drawerCloseBtn = document.querySelector('.drawer-close');
-  const tocList = document.getElementById('toc-list');
-  const mobileTocContent = document.getElementById('mobileTocContent');
-  
-  // Clone TOC for mobile
-  if (tocList && mobileTocContent) {
-    const clonedToc = tocList.cloneNode(true);
-    clonedToc.id = 'mobile-toc-list';
-    mobileTocContent.appendChild(clonedToc);
-  }
+import os
 
-  // Create overlay
-  const overlay = document.createElement('div');
-  overlay.className = 'drawer-overlay';
-  document.body.appendChild(overlay);
+js_path = r"c:\Users\USER\Desktop\BLOG\jichangbay.com\themes\jichangbay\source\js\main.js"
+with open(js_path, "r", encoding="utf-8") as f:
+    js = f.read()
 
-  function openDrawer() {
-    mobileDrawer.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeDrawer() {
-    mobileDrawer.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', openDrawer);
-  }
-  if (drawerCloseBtn) {
-    drawerCloseBtn.addEventListener('click', closeDrawer);
-  }
-  overlay.addEventListener('click', closeDrawer);
-
-  // Close drawer when clicking a mobile TOC link
-  mobileTocContent.addEventListener('click', (e) => {
-    if (e.target.tagName.toLowerCase() === 'a') {
-      closeDrawer();
-    }
-  });
-
-  // Progress Bar & TOC Highlighting
-  const progressBar = document.getElementById('progress-bar');
-  const sections = document.querySelectorAll('section[id]');
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const mobileTocLinks = document.querySelectorAll('#mobile-toc-list .toc-link');
-
-  function updateScroll() {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    if (progressBar) {
-      progressBar.style.width = scrolled + '%';
-    }
-
-    // Highlighting
-    let currentId = '';
-    // Use an offset to detect section
-    const scrollPosition = winScroll + 100;
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        currentId = section.getAttribute('id');
-      }
-    });
-
-    if (currentId) {
-      [tocLinks, mobileTocLinks].forEach(links => {
-        links.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + currentId) {
-            link.classList.add('active');
-          }
-        });
-      });
-    }
-  }
-
-  window.addEventListener('scroll', updateScroll);
-  // Trigger once on load
-  updateScroll();
-});
-
-
-  // Drawer TOC Logic
-  const tocBtn = document.getElementById('floating-toc-btn');
-  const overlay = document.getElementById('drawer-overlay');
-  const tocArea = document.querySelector('.toc-area');
-  const tocLinks = document.querySelectorAll('.toc-link, .back-to-top');
-
-  function toggleDrawer() {
-    tocArea.classList.toggle('drawer-open');
-    overlay.classList.toggle('active');
-    document.body.style.overflow = tocArea.classList.contains('drawer-open') ? 'hidden' : '';
-  }
-
-  function closeDrawer() {
-    tocArea.classList.remove('drawer-open');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  if (tocBtn && overlay) {
-    tocBtn.addEventListener('click', toggleDrawer);
-    overlay.addEventListener('click', closeDrawer);
-  }
-
-  tocLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth < 1500) {
-        closeDrawer();
-      }
-    });
-  });
-
-
-// Filter Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const pSelect = document.getElementById('filter-payment');
-    const bSelect = document.getElementById('filter-budget');
-    const tSelect = document.getElementById('filter-traffic');
-    const aiCheck = document.getElementById('filter-ai');
-    const streamCheck = document.getElementById('filter-stream');
-    const deviceCheck = document.getElementById('filter-device');
-    const netCheck = document.getElementById('filter-network');
-    const resContainer = document.getElementById('filter-results-container');
-    const resInfo = document.getElementById('filter-results-info');
-    
-    function updateBudgetOptions() {
-        if(!pSelect) return;
-        const p = pSelect.value;
-        bSelect.innerHTML = '<option value="all">不限</option>';
-        if (p === 'monthly') {
-            bSelect.innerHTML += '<option value="20">¥20以内</option><option value="30">¥30以内</option><option value="50">¥50以内</option><option value="100">¥100以内</option>';
-        } else if (p === 'annual') {
-            bSelect.innerHTML += '<option value="100">¥100以内</option><option value="200">¥200以内</option><option value="300">¥300以内</option><option value="500">¥500以内</option>';
-        } else if (p === 'onetime') {
-            bSelect.innerHTML += '<option value="100">¥100以内</option><option value="200">¥200以内</option><option value="400">¥400以内</option>';
-        }
-    }
-    if(pSelect) {
-        pSelect.addEventListener('change', () => { updateBudgetOptions(); runFilter(); });
-        bSelect.addEventListener('change', runFilter);
-        tSelect.addEventListener('change', runFilter);
-        aiCheck.addEventListener('change', runFilter);
-        streamCheck.addEventListener('change', runFilter);
-        deviceCheck.addEventListener('change', runFilter);
-        netCheck.addEventListener('change', runFilter);
-        updateBudgetOptions();
-        
-        document.getElementById('btn-reset-filter').addEventListener('click', () => {
-            pSelect.value = 'all'; updateBudgetOptions(); tSelect.value = 'all'; bSelect.value = 'all';
-            aiCheck.checked = false; streamCheck.checked = false; deviceCheck.checked = false; netCheck.checked = false;
-            runFilter();
-        });
-        
+# Update Quick Tags Reset and RunFilter mapping
+# 100-200GB fix => maxT
+replacement = """
         // Quick tags
         document.querySelectorAll('.qt-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -190,8 +35,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 runFilter();
             });
         });
-    }
+"""
 
+# Find old quick tags logic and replace
+start_token = "// Quick tags\n        document.querySelectorAll('.qt-btn')"
+end_token = "});\n        });"
+
+parts = js.split(start_token)
+if len(parts) > 1:
+    end_idx = parts[1].find(end_token)
+    if end_idx != -1:
+        js = parts[0] + replacement.strip() + parts[1][end_idx + len(end_token):]
+
+# Now fix the traffic select options in index_html (I'll do that in another python script or just inject it here)
+# Wait, I should also update runFilter logic in main.js!
+
+run_filter_replacement = """
     function runFilter() {
         if(!window.siteProviders) return;
         const pMode = pSelect.value;
@@ -298,22 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
         }
     }
+"""
 
-    // Copy code logic
-    document.querySelectorAll('.btn-copy-code').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const code = e.target.getAttribute('data-code');
-            navigator.clipboard.writeText(code).then(() => {
-                const old = e.target.innerHTML;
-                e.target.innerHTML = '复制成功 ✓';
-                e.target.style.background = '#10b981';
-                setTimeout(() => {
-                    e.target.innerHTML = old;
-                    e.target.style.background = '';
-                }, 2000);
-            }).catch(() => {
-                alert('复制失败，请手动复制: ' + code);
-            });
-        });
-    });
-});
+start_token_filter = "function runFilter() {"
+end_token_filter = "    // Copy code logic"
+parts_filter = js.split(start_token_filter)
+if len(parts_filter) > 1:
+    end_idx_filter = parts_filter[1].find(end_token_filter)
+    if end_idx_filter != -1:
+        js = parts_filter[0] + run_filter_replacement.strip() + '\n\n' + end_token_filter + parts_filter[1][end_idx_filter + len(end_token_filter):]
+
+with open(js_path, "w", encoding="utf-8") as f:
+    f.write(js)

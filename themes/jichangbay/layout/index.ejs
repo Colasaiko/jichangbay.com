@@ -35,25 +35,7 @@
 
 <main class="main-content container">
   <article class="content-area">
-    
-    <!-- Hero Section -->
-    <section id="top" class="hero-section">
-      <h1>2026 机场推荐与 VPN 使用指南</h1>
-      <p class="hero-subtitle">集中整理机场与 VPN 服务的套餐价格、流量、线路、优惠与使用场景，帮助你更快找到适合自己的选择。</p>
-      <p class="hero-meta">最后更新时间: <%= config.lastUpdated %></p>
-      <div class="hero-actions">
-        <a href="#recommendations" class="btn btn-primary">快速选购</a>
-        <a href="#comparison" class="btn btn-outline">套餐对比</a>
-        <a href="#deals" class="btn btn-outline">当前优惠</a>
-      </div>
-    </section>
-
-    <!-- Quick Buy Section -->
-    <section id="recommendations" class="section-block">
-      <h2>2026 机场快速选购</h2>
-      <p style="margin-bottom: 20px; color: #64748b;">按照预算、流量与使用场景快速找到适合自己的套餐，无需逐个查看全部品牌。</p>
-      
-          <% 
+<% 
             let providers = site.data.providers ? JSON.parse(JSON.stringify(site.data.providers)) : [];
             const fixedFirst = '微风网络';
             const fixedSecond = '飞猫云';
@@ -109,7 +91,25 @@
                 return { startPrice, startTraffic, network, tags, bestForStr, logoSrc };
             }
           %>
+    
+    <!-- Hero Section -->
+    <section id="top" class="hero-section">
+      <h1>2026 机场推荐与 VPN 使用指南</h1>
+      <p class="hero-subtitle">集中整理机场与 VPN 服务的套餐价格、流量、线路、优惠与使用场景，帮助你更快找到适合自己的选择。</p>
+      <p class="hero-meta">最后更新时间: <%= config.lastUpdated %></p>
+      <div class="hero-actions">
+        <a href="#recommendations" class="btn btn-primary">快速选购</a>
+        <a href="#comparison" class="btn btn-outline-light">套餐对比</a>
+        <a href="#deals" class="btn btn-outline-light">当前优惠</a>
+      </div>
+    </section>
 
+    <!-- Quick Buy Section -->
+    <section id="recommendations" class="section-block">
+      <h2>2026 机场快速选购</h2>
+      <p style="margin-bottom: 20px; color: #64748b;">按照预算、流量与使用场景快速找到适合自己的套餐，无需逐个查看全部品牌。</p>
+      
+          
       <div class="quick-buy-grid">
         <% providers.slice(0, 7).forEach((p, i) => {
             const meta = getProviderMeta(p);
@@ -171,7 +171,8 @@
           <select id="filter-traffic">
             <option value="all">不限</option>
             <option value="50">50GB+</option>
-            <option value="100">100GB+</option>
+            <option value="100-200">100-200GB</option>
+            <option value="200">200GB+</option>
             <option value="200">200GB+</option>
             <option value="300">300GB+</option>
             <option value="500">500GB+</option>
@@ -319,7 +320,7 @@
                   <td class="col-traffic"><%= startTraffic %></td>
                   <td class="col-network"><%= network %></td>
                   <td class="col-bestfor"><%= bestForStr %></td>
-                  <td class="col-tags">
+                  <td class="col-tags"><div class="tags-inner">
                     <% tags.forEach(function(t) { %>
                       <span class="pill-badge"><%= t %></span>
                     <% }) %>
@@ -410,8 +411,8 @@
     </section>
 
     <!-- Brands Sections -->
-    <% if (site.data.providers) { %>
-      <% site.data.providers.forEach(function(p) { %>
+    <% if (providers.length) { %>
+      <% providers.forEach(function(p) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
         <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
         <section id="provider-<%= p.slug %>"

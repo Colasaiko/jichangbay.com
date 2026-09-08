@@ -191,15 +191,23 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-.btn-outline {
+.btn-outline-light {
   background: transparent;
-  border: 2px solid white;
+  border: 1px solid rgba(255,255,255,0.8);
   color: white;
 }
-
-.btn-outline:hover {
+.btn-outline-light:hover {
   background: white;
   color: var(--c-deep);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--c-primary);
+  color: var(--c-primary);
+}
+.btn-outline:hover {
+  background: var(--c-primary);
+  color: white;
 }
 
 .btn-small {
@@ -249,12 +257,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--c-deep);
 }
 
-.brand-name {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: bold;
-}
+
 
 .table-logo {
   width: 32px;
@@ -581,12 +584,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.col-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
+
 
 .pill-badge {
   display: inline-flex;
@@ -862,4 +860,36 @@ h1, h2, h3, h4, h5, h6 {
 .btn-small { padding: 4px 10px; font-size: 0.8rem; }
 @media (max-width: 767px) {
   .provider-header-cta { align-items: flex-start !important; margin-top: 10px; }
+}
+
+
+/* Independent Provider Cards */
+.provider-section {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  border-left: 4px solid var(--c-primary);
+}
+
+@media (max-width: 768px) {
+  .provider-section {
+    padding: 16px 20px;
+    border-radius: 8px;
+  }
+}
+
+/* Fix td flex issues */
+.tags-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.brand-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
