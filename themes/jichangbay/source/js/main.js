@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="fr-card" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
                   <div>
                       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-                        <img src="${p.logoSrc}" style="width:24px;border-radius:50%">
+                        <img src="${p.logoSrc}" alt="${p.name}" style="width:24px;border-radius:50%">
                         <strong style="font-size:1.1rem">${p.name}</strong>
                       </div>
                       

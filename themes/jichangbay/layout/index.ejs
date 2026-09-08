@@ -10,11 +10,11 @@
     },
     {
       q: "便宜机场推荐应该只看价格吗？",
-      a: "不建议只看价格。很多看似较低价格的套餐可能对设备数量有限制，或者在部分套餐在晚高峰时的实际体验可能受到网络负载和线路情况影响。在筛选便宜机场推荐时，建议综合对比它的实际可用节点数和流量额度，避免买到难以正常连接的“体验不符合预期的套餐”。"
+      a: "不建议只看价格。部分低价套餐可能在设备数量、节点数量、流量或线路方面存在不同限制，实际体验也可能受到晚高峰网络负载影响。选择便宜机场时，建议同时比较价格、流量、线路和使用需求，避免购买与自身需求不匹配的套餐。"
     },
     {
       q: "月付、年付和不限时机场套餐有什么区别？",
-      a: "月付套餐灵活性最高，适合刚接触某个品牌的用户；部分品牌的年付套餐单价可能低于短周期套餐，但一次性付款金额更高。新用户可先确认服务是否符合需求，再决定是否购买较长周期，；而不限时（按量计费）套餐则非常适合偶尔才有轻度外网需求的人群。建议新用户优先尝试月付机场，确认稳定后再考虑年付。"
+      a: "月付套餐付款周期较短，适合先确认服务是否符合需求；部分品牌的年付套餐平均成本可能更低，但一次性付款金额也更高；不限时或按量计费套餐则更适合使用频率较低、不希望每月流量重置的用户。具体计费规则仍应以对应品牌套餐页面为准。"
     },
     {
       q: "100GB 流量一个月通常够用吗？",
@@ -120,7 +120,22 @@
                 if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
                 let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                 if (!bestForStr || bestForStr === '') bestForStr = '-';
-                const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
+                
+                  let numPrice = 9999;
+                  if (firstPlan) {
+                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
+                    if (pMatch) numPrice = parseFloat(pMatch[0]);
+                  }
+
+                  let numTraffic = 0;
+                  if (startTraffic !== '-') {
+                    let tMatch = startTraffic.match(/([\d\.]+)\s*(GB|TB)/i);
+                    if (tMatch) {
+                      numTraffic = parseFloat(tMatch[1]);
+                      if (tMatch[2].toUpperCase() === 'TB') numTraffic *= 1024;
+                    }
+                  }
+                  const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
                 
                 return { startPrice, startTraffic, network, tags, bestForStr, logoSrc };
             }
@@ -439,9 +454,24 @@
                   let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                   if (!bestForStr || bestForStr === '') bestForStr = '-';
                   
+                  
+                  let numPrice = 9999;
+                  if (firstPlan) {
+                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
+                    if (pMatch) numPrice = parseFloat(pMatch[0]);
+                  }
+
+                  let numTraffic = 0;
+                  if (startTraffic !== '-') {
+                    let tMatch = startTraffic.match(/([\d\.]+)\s*(GB|TB)/i);
+                    if (tMatch) {
+                      numTraffic = parseFloat(tMatch[1]);
+                      if (tMatch[2].toUpperCase() === 'TB') numTraffic *= 1024;
+                    }
+                  }
                   const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
                 %>
-                <tr>
+                <tr class="comp-tr" data-name="<%= p.name.toLowerCase() %>" data-price="<%= numPrice %>" data-traffic="<%= numTraffic %>" data-order="<%= index %>">
                   <td class="brand-name">
                     <div class="brand-cell">
                       <img src="<%= logoSrc %>" alt="<%= p.name %>" class="table-logo">
@@ -456,7 +486,8 @@
                     <% tags.forEach(function(t) { %>
                       <span class="pill-badge"><%= t %></span>
                     <% }) %>
-                  </td>
+                  </div>
+                </td>
                   <td class="col-action">
                     <a href="#provider-<%= p.slug %>" class="btn-detail">查看</a>
                   </td>
@@ -497,9 +528,24 @@
               
               let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
               if (!bestForStr || bestForStr === '') bestForStr = '-';
-              const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
+              
+                  let numPrice = 9999;
+                  if (firstPlan) {
+                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
+                    if (pMatch) numPrice = parseFloat(pMatch[0]);
+                  }
+
+                  let numTraffic = 0;
+                  if (startTraffic !== '-') {
+                    let tMatch = startTraffic.match(/([\d\.]+)\s*(GB|TB)/i);
+                    if (tMatch) {
+                      numTraffic = parseFloat(tMatch[1]);
+                      if (tMatch[2].toUpperCase() === 'TB') numTraffic *= 1024;
+                    }
+                  }
+                  const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
             %>
-            <div class="mobile-card">
+            <div class="mobile-card comp-card" data-name="<%= p.name.toLowerCase() %>" data-price="<%= numPrice %>" data-traffic="<%= numTraffic %>" data-order="<%= index %>">
               <div class="mc-header">
                 <img src="<%= logoSrc %>" alt="<%= p.name %>" class="mc-logo">
                 <strong class="mc-name"><%= p.name %></strong>
@@ -655,7 +701,15 @@
     <section id="about" class="section-block">
       <h2>关于机场湾 (JichangBay)</h2>
       <p>机场湾用于集中整理网络服务品牌的套餐、线路、适用场景与优惠信息，方便用户进行横向比较和选择。页面内容会根据品牌套餐与服务信息变化持续更新。</p>
-      <p><strong>利益相关声明：</strong> 本站收录的部分或全部品牌属于本站关联或自营服务。页面中的注册或购买链接可能包含内部追踪参数，用于统计来源及运营分析。购买前请以对应服务页面展示的套餐、价格与服务条款为准。</p>
+      
+      <p><strong>利益相关声明：</strong><br>
+      本站收录的部分或全部品牌属于本站关联或自营服务。页面中的注册或购买链接可能包含内部追踪参数，用于统计来源及运营分析。购买前请以对应服务页面展示的套餐、价格与服务条款为准。</p>
+
+      <h3>信息来源与维护原则</h3>
+      <p>机场湾由 <a href="https://github.com/Colasaiko" target="_blank" rel="noopener">Colasaiko</a> 持续维护，负责页面资料整理、品牌信息更新与站点维护。</p>
+      <p>页面中的套餐价格、流量、线路、优惠与服务信息，主要根据对应品牌当前公开的套餐页、购买页及服务说明整理。品牌套餐与服务内容可能调整，实际价格、优惠、节点和服务规则请以最终购买页面展示为准。</p>
+      <p>当品牌公开套餐、价格、流量、线路或优惠信息发生变化时，机场湾会根据可获取的公开信息进行更新。</p>
+      <p>如果发现套餐信息变更、优惠码失效、购买链接失效或页面资料有误，可以通过 <a href="mailto:colasaiko15@gmail.com">Email</a> 或 <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener">Telegram</a> 联系我们修正。</p>
     </section>
 
   <!-- Contact Section -->
@@ -715,6 +769,7 @@
         <li><a href="#recommendations" class="toc-link">快速选购</a></li>
         <li><a href="#plan-filter" class="toc-link">套餐筛选</a></li>
         <li><a href="#deals" class="toc-link">当前优惠</a></li>
+        <li><a href="#before-buy" class="toc-link">购买前确认</a></li>
         <li><a href="#comparison" class="toc-link">参数对比表</a></li>
         <% providers.forEach(function(p, index) { %>
           <li><a href="#provider-<%= p.slug %>" class="toc-link toc-child"><%= p.name %></a></li>
