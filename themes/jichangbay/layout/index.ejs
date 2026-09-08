@@ -246,9 +246,69 @@
       </div>
     </section>
 
-        <!-- Comparison Section -->
+        
+    <!-- Before Buy Section -->
+    <section id="before-buy" class="section-block">
+      <h2>购买前建议确认</h2>
+      <p style="margin-bottom: 24px; color: #334155;">不同品牌和套餐的计费方式、流量规则与支持能力可能不同，购买前建议先确认以下信息。</p>
+      <div class="bb-grid">
+        <div class="bb-card">
+          <div class="bb-icon">⏱️</div>
+          <h4 class="bb-title">1. 套餐周期</h4>
+          <p class="bb-desc">确认是月付、季付、年付或一次性/不限时。不要把年付套餐误认为月付。</p>
+        </div>
+        <div class="bb-card">
+          <div class="bb-icon">📊</div>
+          <h4 class="bb-title">2. 流量规则</h4>
+          <p class="bb-desc">确认每月流量、套餐总流量、不限时流量是否重置。如果数据未明确，请以官网为准。</p>
+        </div>
+        <div class="bb-card">
+          <div class="bb-icon">📱</div>
+          <h4 class="bb-title">3. 设备支持</h4>
+          <p class="bb-desc">确认是否限制设备数量，是否支持多设备同时在线。</p>
+        </div>
+        <div class="bb-card">
+          <div class="bb-icon">🤖</div>
+          <h4 class="bb-title">4. AI / 流媒体</h4>
+          <p class="bb-desc">如果主要用途是 ChatGPT、Netflix 等，购买前确认对应品牌是否明确支持解锁。</p>
+        </div>
+        <div class="bb-card">
+          <div class="bb-icon">🎫</div>
+          <h4 class="bb-title">5. 优惠码</h4>
+          <p class="bb-desc">如果当前有优惠码，确认是否需要在购买页面手动填写。</p>
+        </div>
+        <div class="bb-card">
+          <div class="bb-icon">⚖️</div>
+          <h4 class="bb-title">6. 服务条款</h4>
+          <p class="bb-desc">价格、套餐、退款、节点和服务规则：以最终购买页面展示为准。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section -->
     <section id="comparison" class="section-block">
       <h2>品牌总对比表</h2>
+      
+      <div class="comp-toolbar">
+        <div class="comp-search">
+          <label for="comp-search-input" class="sr-only">搜索品牌</label>
+          <input type="text" id="comp-search-input" placeholder="搜索品牌，例如：微风、飞猫、firefly" />
+        </div>
+        <div class="comp-sort">
+          <label for="comp-sort-select" style="font-size:0.9rem; font-weight:600; color:#0f172a;">排序：</label>
+          <select id="comp-sort-select">
+            <option value="default">默认顺序</option>
+            <option value="price-asc">价格从低到高</option>
+            <option value="traffic-asc">流量从小到大</option>
+            <option value="traffic-desc">流量从大到小</option>
+          </select>
+        </div>
+        <button id="comp-reset-btn" class="btn btn-outline" style="padding: 8px 16px;">重置</button>
+      </div>
+      <div id="comp-no-results" class="comp-no-results" aria-live="polite" style="display:none;">
+        没有找到符合关键词的品牌。<button id="comp-clear-btn" class="btn btn-primary btn-small" style="margin-left: 10px;">清除搜索</button>
+      </div>
+
       <div class="comparison-container">
         <!-- Desktop Table -->
         <div class="desktop-provider-table">
@@ -277,7 +337,7 @@
               <% 
                 
               %>
-              <% providers.forEach(function(p) { %>
+              <% providers.forEach(function(p, index) { %>
                 <% 
                   const firstPlan = p.plans && p.plans[0]; 
                   let startPrice = '-';
@@ -337,7 +397,7 @@
         
         <!-- Mobile Cards -->
         <div class="mobile-provider-list">
-          <% providers.forEach(function(p) { %>
+          <% providers.forEach(function(p, index) { %>
             <% 
               const firstPlan = p.plans && p.plans[0]; 
               let startPrice = '-';
@@ -413,7 +473,7 @@
 
     <!-- Brands Sections -->
     <% if (providers.length) { %>
-      <% providers.forEach(function(p) { %>
+      <% providers.forEach(function(p, index) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
         <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
@@ -551,7 +611,7 @@
         <li><a href="#plan-filter" class="toc-link">套餐筛选</a></li>
         <li><a href="#deals" class="toc-link">当前优惠</a></li>
         <li><a href="#comparison" class="toc-link">参数对比表</a></li>
-        <% providers.forEach(function(p) { %>
+        <% providers.forEach(function(p, index) { %>
           <li><a href="#provider-<%= p.slug %>" class="toc-link toc-child"><%= p.name %></a></li>
         <% }) %>
         <li><a href="#how-to-choose" class="toc-link">选择指南</a></li>

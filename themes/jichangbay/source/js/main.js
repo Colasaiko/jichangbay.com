@@ -317,3 +317,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+// Add Comparison Toolbar logic
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById('comp-search-input');
+    const sortSelect = document.getElementById('comp-sort-select');
+    const resetBtn = document.getElementById('comp-reset-btn');
+    const clearBtn = document.getElementById('comp-clear-btn');
+    const noResults = document.getElementById('comp-no-results');
+    const compTbody = document.querySelector('.comparison-table tbody');
+    const compMobList = document.querySelector('.mobile-provider-list');
+    
+    if(!searchInput || !compTbody) return;
+    
+    // Store original nodes to easily sort/filter them
+    const originalTrs = Array.from(compTbody.querySelectorAll('.comp-tr'));
+    const originalCards = compMobList ? Array.from(compMobList.querySelectorAll('.comp-card')) : [];
+    
+    function applyFilterAndSort() {
+        const query = searchInput.value.toLowerCase().trim();
+        const sortVal = sortSelect.value;
+        
+        let visibleCount = 0;
+        
+        const filterAndSortArray = (arr, container) => {
+            // First filter
+            let filtered = arr.filter(el => {
+                const name = el.getAttribute('data-name') || '';
+                return name.includes(query) || query === '';
+            });
+            visibleCount = filtered.length;
+            
+            // Then sort
+            filtered.sort((a, b) => {
+                if (sortVal === 'default') {
+                    return parseInt(a.getAttribute('data-order')) - parseInt(b.getAttribute('data-order'));
+                } else if (sortVal === 'price-asc') {
+                    return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+                } else if (sortVal === 'traffic-asc') {
+                    return parseFloat(a.getAttribute('data-traffic')) - parseFloat(b.getAttribute('data-traffic'));
+                } else if (sortVal === 'traffic-desc') {
+                    return parseFloat(b.getAttribute('data-traffic')) - parseFloat(a.getAttribute('data-traffic'));
+                }
+                return 0;
+            });
+            
+            // Re-append
+            container.innerHTML = '';
+            filtered.forEach(el => container.appendChild(el));
+        };
+        
+        filterAndSortArray(originalTrs, compTbody);
+        if (compMobList) {
+            filterAndSortArray(originalCards, compMobList);
+        }
+        
+        if (visibleCount === 0) {
+            compTbody.parentElement.parentElement.style.display = 'none'; // hide the desktop table container
+            if(compMobList) compMobList.style.display = 'none';
+            noResults.style.display = 'block';
+        } else {
+            compTbody.parentElement.parentElement.style.display = 'block';
+            if(compMobList) compMobList.style.display = 'block';
+            noResults.style.display = 'none';
+        }
+    }
+    
+    searchInput.addEventListener('input', applyFilterAndSort);
+    sortSelect.addEventListener('change', applyFilterAndSort);
+    
+    const doReset = () => {
+        searchInput.value = '';
+        sortSelect.value = 'default';
+        applyFilterAndSort();
+    };
+    
+    resetBtn.addEventListener('click', doReset);
+    if(clearBtn) clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilterAndSort();
+    });
+});

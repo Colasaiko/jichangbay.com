@@ -1,0 +1,16 @@
+<div class="mobile-provider-list">
+          <% providers.forEach(function(p) { %>
+            <% 
+              const firstPlan = p.plans && p.plans[0]; 
+              let startPrice = '-';
+              if (firstPlan) {
+                if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
+                else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
+                else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
+              }
+              
+              let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
+              if(startTraffic !== '-') {
+                 startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase();
+              }
+      
