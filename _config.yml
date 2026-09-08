@@ -5,7 +5,7 @@
 # Site
 title: 2026 机场推荐与 VPN 使用指南 | 机场湾 JichangBay
 subtitle: '专业的中文用户机场与VPN推荐'
-description: '2026年最新中文机场与VPN推荐、测速、评价。提供科学上网指南。'
+description: '2026年机场与VPN服务信息整理，提供套餐价格、流量、线路、AI与流媒体支持、优惠信息及选购指南，帮助用户快速比较并找到适合自己的服务。'
 keywords: '2026推荐机场,VPN推荐,科学上网,翻墙,机场评测'
 author: Colasaiko
 language: zh-CN
@@ -84,4 +84,4 @@ theme: jichangbay
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
-lastUpdated: "2026-09-07"
+lastUpdated: '2026-09-08'
