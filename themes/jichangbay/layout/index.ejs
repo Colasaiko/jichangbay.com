@@ -315,7 +315,7 @@
         %>
           <div class="deal-card">
             <div class="deal-header">
-               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" class="mc-logo">
+               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" class="mc-logo" width="36" height="36" loading="lazy" decoding="async">
                <strong><%= p.name %></strong>
             </div>
             <div class="deal-discount"><%= p.couponDiscount || '优惠' %></div>
@@ -595,7 +595,7 @@
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header" style="justify-content: space-between; flex-wrap: wrap;">
             <div style="display:flex; align-items:center; gap:15px;">
-              <img src="<%= getProviderMeta(p).logoSrc %>" alt="<%= p.name %>" class="provider-logo">
+              <img src="<%= getProviderMeta(p).logoSrc %>" alt="<%= p.name %>" class="provider-logo" width="64" height="64" loading="lazy" decoding="async">
               <div>
                 <h3><%= p.name %></h3>
                 <p class="provider-short"><%= p.shortDescription || getProviderMeta(p).bestForStr %></p>
