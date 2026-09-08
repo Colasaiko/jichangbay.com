@@ -1,0 +1,13 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "机场湾 JichangBay",
+  "url": "<%= config.url %>/",
+  "email": "mailto:colasaiko15@gmail.com",
+  "sameAs": [
+    "https://github.com/Colasaiko",
+    "https://t.me/ColaSaiko15"
+  ]
+}
+</script>

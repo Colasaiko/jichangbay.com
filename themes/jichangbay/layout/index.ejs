@@ -10,15 +10,15 @@
     },
     {
       q: "便宜机场推荐应该只看价格吗？",
-      a: "绝不能只看价格。很多看似较低价格的套餐可能对设备数量有限制，或者在晚高峰时速度断崖式下跌。在筛选便宜机场推荐时，建议综合对比它的实际可用节点数和流量额度，避免买到难以正常连接的“体验不符合预期的套餐”。"
+      a: "不建议只看价格。很多看似较低价格的套餐可能对设备数量有限制，或者在部分套餐在晚高峰时的实际体验可能受到网络负载和线路情况影响。在筛选便宜机场推荐时，建议综合对比它的实际可用节点数和流量额度，避免买到难以正常连接的“体验不符合预期的套餐”。"
     },
     {
       q: "月付、年付和不限时机场套餐有什么区别？",
-      a: "月付套餐灵活性最高，适合刚接触某个品牌的用户；年付通常有较大折扣，适合长期稳定使用的老用户；而不限时（按量计费）套餐则非常适合偶尔才有轻度外网需求的人群。建议新用户优先尝试月付机场，确认稳定后再考虑年付。"
+      a: "月付套餐灵活性最高，适合刚接触某个品牌的用户；部分品牌的年付套餐单价可能低于短周期套餐，但一次性付款金额更高。新用户可先确认服务是否符合需求，再决定是否购买较长周期，；而不限时（按量计费）套餐则非常适合偶尔才有轻度外网需求的人群。建议新用户优先尝试月付机场，确认稳定后再考虑年付。"
     },
     {
       q: "100GB 流量一个月通常够用吗？",
-      a: "这取决于你的使用习惯。如果只是日常查阅网页、使用聊天工具或偶尔看几段短视频，100GB 足以应对。但如果你经常观看 4K 高清流媒体、频繁下载大文件，建议选择 200GB 或更高额度的大流量机场推荐套餐。"
+      a: "这取决于你的使用习惯。如果只是日常查阅网页、使用聊天工具或偶尔看几段短视频，对于网页浏览、聊天和偶尔观看视频等轻度使用场景，100GB 对部分用户可能够用。如果经常观看高清视频或下载大文件，可以考虑更高流量套餐。"
     },
     {
       q: "IPLC、IEPL 和普通中转线路有什么区别？",
@@ -26,11 +26,11 @@
     },
     {
       q: "使用 ChatGPT、Gemini、Claude 时应该注意什么？",
-      a: "这些前沿 AI 工具通常对 IP 的原生纯净度有严格要求，很多普通数据中心 IP 会被直接封锁。如果你的主要用途是 AI 交互，务必在购买前确认该机场的节点是否标注了“支持 ChatGPT”或“原生 IP”解锁能力。"
+      a: "ChatGPT、Gemini、Claude 等服务的可用性可能受到地区、IP 类型、服务方政策及节点状态影响。如果主要用途是 AI 工具，建议购买前确认品牌是否明确标注相关支持，并以实际使用情况为准。"
     },
     {
       q: "机场优惠码应该怎么使用？",
-      a: "部分品牌会在特定节日或日常提供长期折扣码。通常你需要在其官网的注册购买页面、收银台或结账界面找到“优惠码”或“Promo Code”输入框，填入本站提供的机场优惠码并点击应用，即可享受对应折扣。"
+      a: "部分品牌会在特定节日或日常提供长期折扣码。通常你需要在其官网的注册购买页面、收银台或结账界面找到“优惠码”或“Promo Code”输入框，填入本站提供的机场优惠码。如果优惠码仍然有效并适用于当前套餐，应用后通常可以在结算页面看到对应优惠结果。优惠有效期和适用范围以购买页面为准。"
     }
   ];
 %>
@@ -108,7 +108,7 @@
                    startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase() + ' 起';
                 }
                 
-                let network = '优质专线';
+                let network = '线路信息见套餐页';
                 if (p.features && p.features.some(f => f.toUpperCase().includes('IPLC'))) network = 'IPLC 专线';
                 else if (p.features && p.features.some(f => f.toUpperCase().includes('IEPL'))) network = 'IEPL 专线';
                 else if (p.features && p.features.some(f => f.toUpperCase().includes('BGP'))) network = 'BGP 中转';
@@ -118,8 +118,6 @@
                 if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
                 if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
                 if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
-                if (tags.length === 0) tags.push('优质线路');
-                
                 let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                 if (!bestForStr || bestForStr === '') bestForStr = '-';
                 const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
@@ -131,7 +129,7 @@
     <!-- Hero Section -->
     <section id="top" class="hero-section">
       <h1>2026 机场推荐与 VPN 套餐选购指南</h1>
-      <p class="hero-subtitle">机场湾整理：2026机场推荐、最新套餐价格（支持月付/年付）、每月流量规则、专线网络、AI工具解锁、流媒体支持情况及独家优惠码。用户可以根据自身预算与流量需求，直接筛选并前往官方入口购买最适合的科学上网服务。</p>
+      <p class="hero-subtitle">机场湾整理：2026机场推荐、最新套餐价格（支持月付/年付）、每月流量规则、专线网络、AI工具解锁、流媒体支持情况及优惠码。用户可以根据自身预算与流量需求，直接筛选并前往官方入口查看更符合自身需求的服务选项。</p>
       <p class="hero-meta">最后更新时间: <%= config.lastUpdated %></p>
       <div class="hero-actions">
         <a href="#recommendations" class="btn btn-primary">快速选购</a>
@@ -255,13 +253,37 @@
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "<%= config.url %>/#organization",
   "name": "机场湾 JichangBay",
   "url": "<%= config.url %>/",
+  "email": "mailto:colasaiko15@gmail.com"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "<%= config.url %>/#maintainer",
+  "name": "Colasaiko",
+  "url": "https://github.com/Colasaiko",
   "email": "mailto:colasaiko15@gmail.com",
   "sameAs": [
     "https://github.com/Colasaiko",
     "https://t.me/ColaSaiko15"
   ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "<%= config.url %>/#website",
+  "url": "<%= config.url %>/",
+  "name": "机场湾 JichangBay",
+  "inLanguage": "zh-CN",
+  "publisher": {
+    "@id": "<%= config.url %>/#organization"
+  }
 }
 </script>
     </section>
@@ -402,7 +424,7 @@
                      startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase();
                   }
                   
-                  let network = '优质专线';
+                  let network = '线路信息见套餐页';
                   if (p.features && p.features.some(f => f.toUpperCase().includes('IPLC'))) network = 'IPLC 专线';
                   else if (p.features && p.features.some(f => f.toUpperCase().includes('IEPL'))) network = 'IEPL 专线';
                   else if (p.features && p.features.some(f => f.toUpperCase().includes('BGP'))) network = 'BGP 中转';
@@ -412,7 +434,6 @@
                   if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
                   if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
                   if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
-                  if (tags.length === 0) tags.push('优质线路');
                   tags = tags.slice(0, 3);
                   
                   let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
@@ -462,7 +483,7 @@
                  startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase();
               }
               
-              let network = '优质专线';
+              let network = '线路信息见套餐页';
               if (p.features && p.features.some(f => f.toUpperCase().includes('IPLC'))) network = 'IPLC 专线';
               else if (p.features && p.features.some(f => f.toUpperCase().includes('IEPL'))) network = 'IEPL 专线';
               else if (p.features && p.features.some(f => f.toUpperCase().includes('BGP'))) network = 'BGP 中转';
@@ -472,7 +493,6 @@
               if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
               if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
               if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
-              if (tags.length === 0) tags.push('优质线路');
               tags = tags.slice(0, 3);
               
               let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
@@ -641,7 +661,7 @@
   <!-- Contact Section -->
     <section id="contact" class="section-block">
       <h2>项目与联系</h2>
-      <p style="margin-bottom: 24px; color: #334155;">如果你希望查看更多机场、Clash、VPN 与客户端相关资源，或需要与机场湾联系，可以通过以下公开渠道找到我们。</p>
+      <p style="margin-bottom: 24px; color: #334155;">如果你希望查看更多机场、Clash、VPN 与客户端相关资源，或需要反馈套餐变更、优惠失效、链接问题及其他资料错误，可以通过以下公开渠道联系机场湾。</p>
       
       <div class="contact-grid">
         <div class="contact-card">
@@ -660,7 +680,7 @@
           </div>
           <h3 class="contact-title">Email</h3>
           <p class="contact-subtitle">colasaiko15@gmail.com</p>
-          <p class="contact-desc">适合内容反馈、合作咨询或其他需要通过邮件沟通的事项。</p>
+          <p class="contact-desc">适合资料纠错、套餐变更反馈、链接问题、内容反馈与合作咨询。</p>
           <a href="mailto:colasaiko15@gmail.com" class="btn btn-outline" style="width:100%; justify-content:center;">发送邮件</a>
         </div>
         
@@ -670,7 +690,7 @@
           </div>
           <h3 class="contact-title">Telegram</h3>
           <p class="contact-subtitle">@ColaSaiko15</p>
-          <p class="contact-desc">可以通过 Telegram 与我们联系。</p>
+          <p class="contact-desc">适合快速反馈资料变更、链接失效或其他站点相关问题。</p>
           <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">打开 Telegram</a>
         </div>
       </div>
@@ -715,7 +735,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; 2026 机场湾 JichangBay. All Rights Reserved.</p>
+    <p>&copy; 2026 机场湾 JichangBay · <a href="https://github.com/Colasaiko/tuijianjichang" target="_blank" rel="noopener" style="color:#64748b; text-decoration:none;">GitHub</a> · <a href="mailto:colasaiko15@gmail.com" style="color:#64748b; text-decoration:none;">Email</a> · <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener" style="color:#64748b; text-decoration:none;">Telegram</a></p>
   </div>
 </footer>
 
@@ -728,7 +748,14 @@
   "url": "<%= config.url %>/",
   "name": "<%= config.title %>",
   "description": "<%= config.description %>",
-  "dateModified": "<%= config.lastUpdated %>"
+  "dateModified": "<%= config.lastUpdated %>",
+  "inLanguage": "zh-CN",
+  "author": {
+    "@id": "<%= config.url %>/#maintainer"
+  },
+  "publisher": {
+    "@id": "<%= config.url %>/#organization"
+  }
 }
 </script>
 <script type="application/ld+json">
