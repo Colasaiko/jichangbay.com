@@ -62,6 +62,7 @@
   - 专线低延迟
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/微风.png
 - name: firefly
   slug: firefly
   relationship: own
@@ -125,6 +126,7 @@
   - 专线低延迟
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/Firefly.png
 - name: 跨界云
   slug: kuajieyun
   relationship: own
@@ -185,6 +187,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/跨界.png
 - name: 闪跃
   slug: shanyue
   relationship: own
@@ -241,6 +244,7 @@
   - AI生产力
   - 4K流媒体
   updatedAt: '2026-09-07'
+  logo: /images/logos/闪跃.png
 - name: 无忧链接
   slug: wuyoulianjie
   relationship: own
@@ -298,6 +302,7 @@
   - AI生产力
   - 4K流媒体
   updatedAt: '2026-09-07'
+  logo: /images/logos/无忧.png
 - name: 灵猫
   slug: lingmao
   relationship: own
@@ -371,6 +376,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/灵猫.png
 - name: BitzNet
   slug: bitznet
   relationship: own
@@ -419,6 +425,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/bitznet.png
 - name: 飞猫云
   slug: feimaoyun
   relationship: own
@@ -488,6 +495,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/飞猫.png
 - name: SOGO 云
   slug: sogoyun
   relationship: own
@@ -556,6 +564,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/sogo.png
 - name: 暮光加速
   slug: muguangjiasu
   relationship: own
@@ -622,6 +631,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/暮光加速.jpg
 - name: 星岛梦
   slug: xingdaomeng
   relationship: own
@@ -783,6 +793,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/唯兔云.png
 - name: 光速云
   slug: guangsuyun
   relationship: own
@@ -860,6 +871,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/光速云.png
 - name: U1S1
   slug: u1s1
   relationship: own
@@ -929,6 +941,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/U1S1.jpg
 - name: 极连云
   slug: jilianyun
   relationship: own
@@ -1001,6 +1014,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/极连云.png
 - name: 光年梯
   slug: guangnianti
   relationship: own
@@ -1070,6 +1084,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/光年梯.jpg
 - name: 一翻云
   slug: yifanyun
   relationship: own
@@ -1149,6 +1164,7 @@
   - AI生产力
   - 4K流媒体
   updatedAt: '2026-09-07'
+  logo: /images/logos/一翻云.png
 - name: 二猫云
   slug: ermaoyun
   relationship: own
@@ -1219,6 +1235,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/二猫云.png
 - name: 边缘节点
   slug: bianyuanjiedian
   relationship: own
@@ -1288,6 +1305,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/边缘节点.png
 - name: 可信云
   slug: kexinyun
   relationship: own
@@ -1364,6 +1382,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/可信云.png
 - name: 速界机场
   slug: sujiejichang
   relationship: own
@@ -1435,6 +1454,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/速界机场.png
 - name: 快狸
   slug: kuaili
   relationship: own
@@ -1505,6 +1525,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/快狸.png
 - name: 飞V
   slug: feiv
   relationship: own
@@ -1593,6 +1614,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/飞V.png
 - name: 梯子云
   slug: tiziyun
   relationship: own
@@ -1680,6 +1702,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/梯子云.png
 - name: WaveNet
   slug: wavenet
   relationship: own
@@ -1767,6 +1790,7 @@
   - 专线低延迟
   - 4K流媒体
   updatedAt: '2026-09-07'
+  logo: /images/logos/wavenet.jpg
 - name: 灵动云
   slug: lingdongyun
   relationship: own
@@ -1856,6 +1880,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/灵动云.png
 - name: 隐形人
   slug: yinxingren
   relationship: own
@@ -1943,6 +1968,7 @@
   - 4K流媒体
   - 多设备不限
   updatedAt: '2026-09-07'
+  logo: /images/logos/隐形人.png
 - name: NanoCloud
   slug: nanocloud
   relationship: own
