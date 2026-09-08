@@ -241,7 +241,7 @@
                <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="noopener nofollow" class="btn btn-primary btn-block">前往购买</a>
             </div>
           </div>
-          <div class="provider-divider" style="border-bottom: 1px solid #e2e8f0; margin-top: 18px; margin-bottom: 24px;"></div>
+          
         <% }) %>
       </div>
     </section>
@@ -432,7 +432,8 @@
                <% } %>
                <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary btn-small">查看套餐 / 注册购买</a>
             </div>
-          
+          </div>
+          <div class="provider-divider" style="border-bottom: 1px solid #e2e8f0; margin-top: 18px; margin-bottom: 24px;"></div>
           <div class="provider-meta">
             <span class="meta-item"><strong>价格:</strong> <%= displayPrice %></span>
             <span class="meta-item"><strong>优惠码:</strong> <%= p.coupon %><%= p.couponDiscount ? (' (' + p.couponDiscount + ')') : '' %></span>
