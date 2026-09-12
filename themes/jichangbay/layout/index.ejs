@@ -71,20 +71,20 @@
 
 <main class="main-content container">
   <article class="content-area">
-<% 
+<%
             let providers = site.data.providers ? JSON.parse(JSON.stringify(site.data.providers)) : [];
             const fixedFirst = '微风网络';
             const fixedSecond = '飞猫云';
             const pool = ['闪跃', '灵猫', 'firefly', '无忧链接', '跨界云'];
-            
+
             // Randomize pool using a simple build-time shuffle
             for(let i = pool.length - 1; i > 0; i--){
               const j = Math.floor(Math.random() * (i + 1));
               [pool[i], pool[j]] = [pool[j], pool[i]];
             }
-            
+
             const featuredOrder = [fixedFirst, fixedSecond, ...pool];
-            
+
             providers = providers.sort((a, b) => {
               let idxA = featuredOrder.findIndex(name => name.toLowerCase() === a.name.toLowerCase());
               let idxB = featuredOrder.findIndex(name => name.toLowerCase() === b.name.toLowerCase());
@@ -93,26 +93,43 @@
               if(idxA !== idxB) return idxA - idxB;
               return 0; // fallback to original order
             });
-            
-            function getProviderMeta(p) {
-                const firstPlan = p.plans && p.plans[0]; 
+
+
+              function parseIntentPrice(value) {
+                if (!value) return null;
+                const m = String(value).trim().toLowerCase().match(/([\d\.]+)/);
+                return m ? parseFloat(m[1]) : null;
+              }
+              function parseIntentTrafficGB(value) {
+                if (!value) return null;
+                const m = String(value).trim().toUpperCase().match(/([\d\.]+)\s*(GB|TB|G|T)?/);
+                if (m) {
+                  let num = parseFloat(m[1]);
+                  let unit = m[2];
+                  if (unit === 'TB' || unit === 'T') return num * 1024;
+                  return num;
+                }
+                return null;
+              }
+              function getProviderMeta(p) {
+                const firstPlan = p.plans && p.plans[0];
                 let startPrice = '-';
                 if (firstPlan) {
                   if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月起';
                   else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年起';
                   else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次起';
                 }
-                
+
                 let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
                 if(startTraffic !== '-') {
                    startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase() + ' 起';
                 }
-                
+
                 let network = '线路信息见套餐页';
                 if (p.features && p.features.some(f => f.toUpperCase().includes('IPLC'))) network = 'IPLC 专线';
                 else if (p.features && p.features.some(f => f.toUpperCase().includes('IEPL'))) network = 'IEPL 专线';
                 else if (p.features && p.features.some(f => f.toUpperCase().includes('BGP'))) network = 'BGP 中转';
-                
+
                 let tags = [];
                 if (p.aiSupport === '支持 AI') tags.push('AI支持');
                 if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
@@ -120,7 +137,7 @@
                 if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
                 let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                 if (!bestForStr || bestForStr === '') bestForStr = '-';
-                
+
                   let numPrice = 9999;
                   if (firstPlan) {
                     let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
@@ -136,11 +153,11 @@
                     }
                   }
                   const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
-                
+
                 return { startPrice, startTraffic, network, tags, bestForStr, logoSrc };
             }
           %>
-    
+
     <!-- Hero Section -->
     <section id="top" class="hero-section">
       <h1>2026 机场推荐与 VPN 套餐选购指南</h1>
@@ -157,8 +174,8 @@
     <section id="recommendations" class="section-block">
       <h2>2026 机场快速选购</h2>
       <p style="margin-bottom: 20px; color: #334155;">按照预算与需求快速找到适合的稳定机场推荐、便宜机场推荐与专线机场推荐。无论你是需要按量计费、大流量套餐、小流量轻度使用，还是月付/年付机场，都可以在此直接查找。</p>
-      
-          
+
+
       <div class="quick-buy-grid">
         <% providers.slice(0, 7).forEach((p, i) => {
             const meta = getProviderMeta(p);
@@ -175,7 +192,7 @@
           </div>
         <% }) %>
       </div>
-      
+
       <div class="quick-tags-container" style="margin-top:24px;">
         <h4 style="margin-bottom:12px;font-size:1rem;">按需求快速找：</h4>
         <div class="quick-tags">
@@ -197,7 +214,7 @@
     <section id="plan-filter" class="section-block">
       <h2>按需求筛选套餐</h2>
       <p style="margin-bottom: 20px; color: #334155;">选择预算、流量和使用需求，机场湾会从当前收录品牌中筛选符合条件的选项。</p>
-      
+
       <div class="filter-controls">
         <div class="filter-group">
           <label>付款方式</label>
@@ -237,10 +254,10 @@
            <button id="btn-reset-filter" class="btn btn-outline" style="padding:4px 12px;font-size:0.8rem;">重置筛选</button>
         </div>
       </div>
-      
+
       <div id="filter-results-info" style="margin-top: 20px; font-weight: 600;"></div>
       <div id="filter-results-container" class="filter-results-grid"></div>
-      
+
       <script>
         // Inject provider data for JS filtering
         window.siteProviders = <%- JSON.stringify(providers.map(p => {
@@ -302,13 +319,13 @@
 }
 </script>
     </section>
-    
+
     <!-- Deals Section -->
     <section id="deals" class="section-block">
       <h2>当前优惠与优惠码</h2>
       <p style="margin-bottom: 20px; color: #334155;">这里集中整理目前数据中明确提供的优惠信息，具体活动以购买页面显示为准。</p>
       <div class="deals-grid">
-        <% 
+        <%
            const deals = providers.filter(p => p.coupon && !p.coupon.includes('暂无优惠'));
            deals.forEach(p => {
              const meta = getProviderMeta(p);
@@ -327,12 +344,12 @@
                <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="noopener nofollow" class="btn btn-primary btn-block">前往购买</a>
             </div>
           </div>
-          
+
         <% }) %>
       </div>
     </section>
 
-        
+
     <!-- Before Buy Section -->
     <section id="before-buy" class="section-block">
       <h2>购买前建议确认</h2>
@@ -375,7 +392,7 @@
     <section id="comparison" class="section-block">
       <h2>品牌总对比表</h2>
       <p style="margin-bottom: 20px; color: #334155;">用户可以比较各品牌的套餐价格、流量、线路与适合场景。使用搜索框或通过价格、流量排序，快速在最新机场套餐对比中找到合适的优质机场推荐。</p>
-      
+
       <div class="comp-toolbar">
         <div class="comp-search">
           <label for="comp-search-input" class="sr-only">搜索品牌</label>
@@ -421,40 +438,40 @@
               </tr>
             </thead>
             <tbody>
-              <% 
-                
+              <%
+
               %>
               <% providers.forEach(function(p, index) { %>
-                <% 
-                  const firstPlan = p.plans && p.plans[0]; 
+                <%
+                  const firstPlan = p.plans && p.plans[0];
                   let startPrice = '-';
                   if (firstPlan) {
                     if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
                     else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
                     else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
                   }
-                  
+
                   let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
                   if(startTraffic !== '-') {
                      startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase();
                   }
-                  
+
                   let network = '线路信息见套餐页';
                   if (p.features && p.features.some(f => f.toUpperCase().includes('IPLC'))) network = 'IPLC 专线';
                   else if (p.features && p.features.some(f => f.toUpperCase().includes('IEPL'))) network = 'IEPL 专线';
                   else if (p.features && p.features.some(f => f.toUpperCase().includes('BGP'))) network = 'BGP 中转';
-                  
+
                   let tags = [];
                   if (p.aiSupport === '支持 AI') tags.push('AI支持');
                   if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
                   if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
                   if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
                   tags = tags.slice(0, 3);
-                  
+
                   let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                   if (!bestForStr || bestForStr === '') bestForStr = '-';
-                  
-                  
+
+
                   let numPrice = 9999;
                   if (firstPlan) {
                     let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
@@ -496,39 +513,39 @@
             </tbody>
           </table>
         </div>
-        
+
         <!-- Mobile Cards -->
         <div class="mobile-provider-list">
           <% providers.forEach(function(p, index) { %>
-            <% 
-              const firstPlan = p.plans && p.plans[0]; 
+            <%
+              const firstPlan = p.plans && p.plans[0];
               let startPrice = '-';
               if (firstPlan) {
                 if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
                 else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
                 else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
               }
-              
+
               let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
               if(startTraffic !== '-') {
                  startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase();
               }
-              
+
               let network = '线路信息见套餐页';
               if (p.features && p.features.some(f => f.toUpperCase().includes('IPLC'))) network = 'IPLC 专线';
               else if (p.features && p.features.some(f => f.toUpperCase().includes('IEPL'))) network = 'IEPL 专线';
               else if (p.features && p.features.some(f => f.toUpperCase().includes('BGP'))) network = 'BGP 中转';
-              
+
               let tags = [];
               if (p.aiSupport === '支持 AI') tags.push('AI支持');
               if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
               if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
               if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
               tags = tags.slice(0, 3);
-              
+
               let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
               if (!bestForStr || bestForStr === '') bestForStr = '-';
-              
+
                   let numPrice = 9999;
                   if (firstPlan) {
                     let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
@@ -564,20 +581,20 @@
                   <span class="mc-value"><%= network %></span>
                 </div>
               </div>
-              
+
               <% if (bestForStr !== '-') { %>
               <div class="mc-scene">
                 <span class="mc-label-block">适合场景</span>
                 <span class="mc-value-block"><%= bestForStr %></span>
               </div>
               <% } %>
-              
+
               <div class="mc-tags">
                 <% tags.forEach(function(t) { %>
                   <span class="pill-badge"><%= t %></span>
                 <% }) %>
               </div>
-              
+
               <div class="mc-action">
                 <a href="#provider-<%= p.slug %>" class="mc-btn">查看详情 →</a>
               </div>
@@ -587,7 +604,204 @@
       </div>
     </section>
 
-    <!-- Brands Sections -->
+
+      <!-- Intent Sections -->
+      <section id="cheap-airport" class="section-block intent-section">
+        <h2>2026 便宜机场推荐：¥20/月以内怎么选？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">在选择便宜机场推荐时，建议不要只看月费绝对值，同时比较每月流量、线路质量、设备限制以及是否支持 AI 和流媒体。部分低价套餐可能是小流量包或有特定限制，购买前请仔细确认付款周期。本区只筛选当前资料中明确提供月付，并且月付价格不高于 ¥20 的套餐。</p>
+        <div class="quick-buy-grid" style="margin-bottom: 20px;">
+          <%
+            const cheapList = [];
+            providers.forEach(p => {
+              let cheapPlan = null;
+              if(p.plans) {
+                p.plans.forEach(pl => {
+                  if(pl.monthly) {
+                    const price = parseIntentPrice(pl.monthly);
+                    if(price !== null && price <= 20) {
+                      if(!cheapPlan || price < parseIntentPrice(cheapPlan.monthly)) {
+                        cheapPlan = pl;
+                      }
+                    }
+                  }
+                });
+              }
+              if(cheapPlan) cheapList.push({p: p, plan: cheapPlan});
+            });
+            cheapList.slice(0, 6).forEach(item => {
+              const p = item.p;
+              const pl = item.plan;
+              const meta = getProviderMeta(p);
+          %>
+          <div class="card card-small">
+            <div class="card-head">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-body">
+              <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
+              <div style="font-size: 0.95rem; margin-bottom: 5px;"><strong><%= pl.name %></strong></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量：<%= pl.traffic || '-' %></div>
+              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= pl.monthly.replace('¥ ', '¥') %>/月</div>
+              <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">可在上方套餐筛选与品牌总对比表查看更多选项。以上仅根据机场湾当前收录套餐字段筛选，不构成品牌排名；价格、流量和服务规则可能调整，购买前请以对应服务页面为准。</p>
+      </section>
+
+      <section id="dedicated-airport" class="section-block intent-section">
+        <h2>2026 稳定专线机场推荐：IPLC / IEPL 怎么选？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">IPLC / IEPL 与普通公网中转在线路架构和路由方式上存在区别，通常被视为更稳定的专线网络。但需要注意的是，即便选择标明 IPLC 的稳定专线机场推荐，实际的延迟、速度、稳定性和可用性仍然会受到服务商线路配置、用户所在地区、运营商及当前网络环境的综合影响，并非绝对保证。</p>
+        <div class="quick-buy-grid" style="margin-bottom: 20px;">
+          <%
+            const dedList = providers.filter(p => {
+              if(!p.features) return false;
+              return p.features.some(f => {
+                const upper = String(f).toUpperCase();
+                return upper.includes('IPLC') || upper.includes('IEPL');
+              });
+            });
+            dedList.slice(0, 6).forEach(p => {
+              const meta = getProviderMeta(p);
+              let tag = '专线';
+              if(p.features) {
+                if(p.features.some(f => String(f).toUpperCase().includes('IPLC'))) tag = 'IPLC';
+                else if(p.features.some(f => String(f).toUpperCase().includes('IEPL'))) tag = 'IEPL';
+              }
+          %>
+          <div class="card card-small">
+            <div class="card-head">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-body">
+              <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
+              <div style="margin-bottom: 5px;"><span class="pill-badge pill-green"><%= tag %></span></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">起步流量：<%= meta.startTraffic %></div>
+              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= meta.startPrice %></div>
+              <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">说明：本区仅列出在官方资料中明确包含 IPLC 或 IEPL 描述的品牌，不代表排名先后，具体网络体验请以实际使用为准。</p>
+      </section>
+
+      <section id="large-traffic-airport" class="section-block intent-section">
+        <h2>大流量机场推荐：500GB / 1TB 套餐怎么选？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">对于需要观看高清视频、多设备共用、较多下载或较高频率网络使用的用户，寻找大流量机场推荐十分必要。需要根据个人的实际使用情况来决定 500GB 或 1TB 是否够用，同时务必在购买前确认该流量是按月重置的周期流量，还是一次性的套餐总流量。</p>
+        <div class="quick-buy-grid" style="margin-bottom: 20px;">
+          <%
+            const largeList = [];
+            providers.forEach(p => {
+              let largePlan = null;
+              if(p.plans) {
+                for(let i=0; i<p.plans.length; i++) {
+                  const pl = p.plans[i];
+                  const gb = parseIntentTrafficGB(pl.traffic);
+                  if(gb !== null && gb >= 500) {
+                    largePlan = pl;
+                    break;
+                  }
+                }
+              }
+              if(largePlan) largeList.push({p: p, plan: largePlan});
+            });
+            largeList.slice(0, 6).forEach(item => {
+              const p = item.p;
+              const pl = item.plan;
+              const meta = getProviderMeta(p);
+              let displayPrice = '-';
+              if(pl.monthly) displayPrice = pl.monthly.replace('¥ ', '¥') + '/月';
+              else if(pl.quarterly) displayPrice = pl.quarterly.replace('¥ ', '¥') + '/季';
+              else if(pl.annual) displayPrice = pl.annual.replace('¥ ', '¥') + '/年';
+              else if(pl.oneTime) displayPrice = pl.oneTime.replace('¥ ', '¥');
+          %>
+          <div class="card card-small">
+            <div class="card-head">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-body">
+              <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
+              <div style="font-size: 0.95rem; margin-bottom: 5px;"><strong><%= pl.name %></strong></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量：<%= pl.traffic %></div>
+              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= displayPrice %></div>
+              <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">提示：此处筛选流量 &gt;= 500GB 的套餐。价格、流量规则及有效期限请以服务商官网标注为准，列表自然排序，不构成名次推荐。</p>
+      </section>
+
+      <section id="ai-airport" class="section-block intent-section">
+        <h2>ChatGPT / Claude / Gemini 机场怎么选？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">许多用户在寻找支持 ChatGPT机场或 AI机场。需要注意的是，AI 服务是否可正常使用，可能会受到地区限制、IP 类型、节点当前状态以及 AI 服务方政策变动的影响。部分品牌明确提供了相关解锁支持，但请注意这不代表永久可用，具体情况需以实际使用体验为准。</p>
+        <div class="quick-buy-grid" style="margin-bottom: 20px;">
+          <%
+            const aiList = providers.filter(p => p.aiSupport === '支持 AI');
+            aiList.slice(0, 6).forEach(p => {
+              const meta = getProviderMeta(p);
+          %>
+          <div class="card card-small">
+            <div class="card-head">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-body">
+              <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
+              <div style="margin-bottom: 5px;"><span class="pill-badge pill-purple">支持 AI</span></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">起步流量：<%= meta.startTraffic %></div>
+              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= meta.startPrice %></div>
+              <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">注意：上述品牌数据中明确标注了支持 AI，但实际可用性可能会随政策波动，购买前建议向商家确认最新状态。</p>
+      </section>
+
+      <section id="onetime-airport" class="section-block intent-section">
+        <h2>一次性 / 不限时机场套餐怎么选？适合哪些用户？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">对于使用频率较低、不想每月固定付费，或者希望购买一批流量慢慢使用的用户，不限时机场或一次性流量套餐是很好的选择。但需要特别提醒：一次性付款不自动代表流量永久不过期，是否不限时以及有效期规则请以对应品牌购买页面说明为准。</p>
+        <div class="quick-buy-grid" style="margin-bottom: 20px;">
+          <%
+            const oneTimeList = [];
+            providers.forEach(p => {
+              let otPlan = null;
+              if(p.plans) {
+                for(let i=0; i<p.plans.length; i++) {
+                  if(p.plans[i].oneTime) {
+                    otPlan = p.plans[i];
+                    break;
+                  }
+                }
+              }
+              if(otPlan) oneTimeList.push({p: p, plan: otPlan});
+            });
+            oneTimeList.slice(0, 6).forEach(item => {
+              const p = item.p;
+              const pl = item.plan;
+              const meta = getProviderMeta(p);
+          %>
+          <div class="card card-small">
+            <div class="card-head">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-body">
+              <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
+              <div style="font-size: 0.95rem; margin-bottom: 5px;"><strong><%= pl.name %></strong></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量：<%= pl.traffic || '-' %></div>
+              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= pl.oneTime.replace('¥ ', '¥') %></div>
+              <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">请务必在提供商网站核实“一次性”是否等同于“无使用期限”，部分套餐可能存在隐藏有效期限制。</p>
+      </section>
+
+      <!-- Brands Sections -->
+
     <% if (providers.length) { %>
       <% providers.forEach(function(p, index) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
@@ -701,7 +915,7 @@
     <section id="about" class="section-block">
       <h2>关于机场湾 (JichangBay)</h2>
       <p>机场湾用于集中整理网络服务品牌的套餐、线路、适用场景与优惠信息，方便用户进行横向比较和选择。页面内容会根据品牌套餐与服务信息变化持续更新。</p>
-      
+
       <p><strong>利益相关声明：</strong><br>
       本站收录的部分或全部品牌属于本站关联或自营服务。页面中的注册或购买链接可能包含内部追踪参数，用于统计来源及运营分析。购买前请以对应服务页面展示的套餐、价格与服务条款为准。</p>
 
@@ -716,7 +930,7 @@
     <section id="contact" class="section-block">
       <h2>项目与联系</h2>
       <p style="margin-bottom: 24px; color: #334155;">如果你希望查看更多机场、Clash、VPN 与客户端相关资源，或需要反馈套餐变更、优惠失效、链接问题及其他资料错误，可以通过以下公开渠道联系机场湾。</p>
-      
+
       <div class="contact-grid">
         <div class="contact-card">
           <div class="contact-icon">
@@ -727,7 +941,7 @@
           <p class="contact-desc">机场推荐、Clash、VPN、代理客户端与相关网络资源的公开导航项目。</p>
           <a href="https://github.com/Colasaiko/tuijianjichang" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">查看 GitHub 项目</a>
         </div>
-        
+
         <div class="contact-card">
           <div class="contact-icon">
             <svg width="32" height="32" fill="#0f172a" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
@@ -737,7 +951,7 @@
           <p class="contact-desc">适合资料纠错、套餐变更反馈、链接问题、内容反馈与合作咨询。</p>
           <a href="mailto:colasaiko15@gmail.com" class="btn btn-outline" style="width:100%; justify-content:center;">发送邮件</a>
         </div>
-        
+
         <div class="contact-card">
           <div class="contact-icon">
             <svg width="32" height="32" fill="#0f172a" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.292.26.004.545-.106.855-.332 2.12-1.412 3.22-2.13 3.3-2.153.08-.022.189-.044.261.02.072.062.062.18.046.216-.252.55-1.936 2.146-2.046 2.256-.11.11-.225.26-.036.385.188.125.828.536 1.171.764.343.228.686.456 1.05.69.363.235.666.47.886.67.22.2.463.426.687.414.223-.012.446-.226.54-1.24.093-1.014.546-3.864.71-5.18.045-.36.012-.663-.095-.785-.106-.123-.332-.178-.71-.065z"/></svg>
@@ -751,14 +965,14 @@
     </section>
   </article>
 
-  
+
   <!-- Floating TOC Button and Overlay -->
   <button id="floating-toc-btn" class="floating-toc-btn">
     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
     目录
   </button>
   <div id="drawer-overlay" class="drawer-overlay"></div>
-  
+
   <!-- Desktop TOC -->
 
   <aside class="toc-area">
@@ -784,7 +998,7 @@
     </div>
   </aside>
 
-    
+
 
   </main>
 
