@@ -642,6 +642,176 @@
   updatedAt: '2026-09-07'
   logo: /images/logos/暮光加速.webp
   targetUrl: https://varnexa.twilightaff.com/#/?code=1eGqV85O
+- name: 九云
+  slug: jiuyun
+  relationship: partner
+  goUrl: /go/jiuyun/
+  affUrl: /go/jiuyun/
+  coupon: 9yun
+  couponDiscount: 8折
+  aiSupport: 支持 AI
+  streamingSupport: 支持流媒体解锁
+  clientSupport: 3-5台设备同时在线
+  bestFor:
+    - 低预算
+    - 大流量
+    - AI工具
+    - 流媒体
+    - 多设备使用
+  macDownloadIntel: https://www.ruanjiandaohang.com/xz/QiNHVx43bsUf.dmg
+  macDownloadAppleSilicon: https://www.ruanjiandaohang.com/xz/G3I1M0SGUdsI.dmg
+  downloadGuide: https://www.ruanjiandaohang.com/
+  updatedAt: '2026-09-19'
+  features:
+    - 海外中转，低延迟
+    - 支持 Netflix / ChatGPT / TikTok
+    - 3–5 台设备同时在线
+    - 智能路由自动择优
+    - 专业客服支持
+    - 常规套餐默认每月订单日重置流量
+    - 当月未使用完的常规套餐流量不会累积至下个月
+  plans:
+    - name: 特惠一
+      traffic: 200 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: ¥68.00
+      oneTime: null
+    - name: 特惠二
+      traffic: 400 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: ¥88.00
+      oneTime: null
+    - name: 特惠三
+      traffic: 200 GB
+      monthly: null
+      quarterly: ¥18.00
+      semiannual: ¥36.00
+      annual: ¥72.00
+      oneTime: null
+    - name: 招财版
+      traffic: 150 GB
+      monthly: ¥6.00
+      quarterly: ¥18.00
+      semiannual: ¥36.00
+      annual: ¥72.00
+      oneTime: null
+    - name: 聚财版
+      traffic: 300 GB
+      monthly: ¥9.00
+      quarterly: ¥27.00
+      semiannual: ¥54.00
+      annual: ¥108.00
+      oneTime: null
+    - name: 旺财版
+      traffic: 600 GB
+      monthly: ¥16.00
+      quarterly: ¥48.00
+      semiannual: ¥96.00
+      annual: ¥192.00
+      oneTime: null
+    - name: 来财版
+      traffic: 100 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: null
+      oneTime: ¥68.00
+    - name: 鸿运版
+      traffic: 300 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: null
+      oneTime: ¥99.00
+  targetUrl: https://888.jiuyundl.com/#/register?code=RvrYuabu
+- name: 宝云
+  slug: baoyun
+  relationship: partner
+  goUrl: /go/baoyun/
+  affUrl: /go/baoyun/
+  coupon: 暂无优惠
+  couponDiscount: null
+  streamingSupport: 支持常规流媒体服务
+  clientSupport: 2-5台设备同时在线
+  bestFor:
+    - 低预算
+    - 大流量
+    - 流媒体
+    - 多设备使用
+  macDownloadIntel: https://www.ruanjiandaohang.com/xz/QiNHVx43bsUf.dmg
+  macDownloadAppleSilicon: https://www.ruanjiandaohang.com/xz/G3I1M0SGUdsI.dmg
+  downloadGuide: https://www.ruanjiandaohang.com/
+  updatedAt: '2026-09-19'
+  features:
+    - 支持常规流媒体服务
+    - 2–5 台设备同时在线
+    - 在线客服与售后技术支持
+    - 常规套餐默认每月订单日重置流量
+    - 当月未使用完的常规套餐流量不会累积至下个月
+  plans:
+    - name: 年付轻量特惠
+      traffic: 100 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: ¥32.00
+      oneTime: null
+    - name: 季付轻量特惠
+      traffic: 500 GB
+      monthly: null
+      quarterly: ¥16.00
+      semiannual: null
+      annual: null
+      oneTime: null
+    - name: 福宝
+      traffic: 200 GB
+      monthly: ¥4.00
+      quarterly: ¥12.00
+      semiannual: ¥24.00
+      annual: ¥48.00
+      oneTime: null
+    - name: 财宝
+      traffic: 500 GB
+      monthly: ¥8.00
+      quarterly: ¥24.00
+      semiannual: ¥48.00
+      annual: ¥96.00
+      oneTime: null
+    - name: 金宝
+      traffic: 1000 GB
+      monthly: ¥13.00
+      quarterly: ¥39.00
+      semiannual: ¥78.00
+      annual: ¥156.00
+      oneTime: null
+    - name: 传家宝
+      traffic: 200 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: null
+      oneTime: ¥29.00
+    - name: 传世宝
+      traffic: 500 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: null
+      oneTime: ¥39.00
+    - name: 传承宝
+      traffic: 1000 GB
+      monthly: null
+      quarterly: null
+      semiannual: null
+      annual: null
+      oneTime: ¥59.00
+  aiSupport: 未提供明确资料
+  targetUrl: https://888by.baoyundl.com/#/register?code=9thDnaCR
+
 - name: 星岛梦
   slug: xingdaomeng
   relationship: own
@@ -2082,172 +2252,3 @@
     - 日常翻墙
   updatedAt: '2026-09-07'
   targetUrl: https://pin.dianping.men/auth/register?code=Cv2pH8HA
-- name: 九云
-  slug: jiuyun
-  relationship: partner
-  goUrl: /go/jiuyun/
-  affUrl: /go/jiuyun/
-  coupon: 9yun
-  couponDiscount: 8折
-  aiSupport: 支持 AI
-  streamingSupport: 支持流媒体解锁
-  clientSupport: 3-5台设备同时在线
-  bestFor:
-    - 低预算
-    - 大流量
-    - AI工具
-    - 流媒体
-    - 多设备使用
-  macDownloadIntel: https://www.ruanjiandaohang.com/xz/QiNHVx43bsUf.dmg
-  macDownloadAppleSilicon: https://www.ruanjiandaohang.com/xz/G3I1M0SGUdsI.dmg
-  downloadGuide: https://www.ruanjiandaohang.com/
-  updatedAt: '2026-09-19'
-  features:
-    - 海外中转，低延迟
-    - 支持 Netflix / ChatGPT / TikTok
-    - 3–5 台设备同时在线
-    - 智能路由自动择优
-    - 专业客服支持
-    - 常规套餐默认每月订单日重置流量
-    - 当月未使用完的常规套餐流量不会累积至下个月
-  plans:
-    - name: 特惠一
-      traffic: 200 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: ¥68.00
-      oneTime: null
-    - name: 特惠二
-      traffic: 400 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: ¥88.00
-      oneTime: null
-    - name: 特惠三
-      traffic: 200 GB
-      monthly: null
-      quarterly: ¥18.00
-      semiannual: ¥36.00
-      annual: ¥72.00
-      oneTime: null
-    - name: 招财版
-      traffic: 150 GB
-      monthly: ¥6.00
-      quarterly: ¥18.00
-      semiannual: ¥36.00
-      annual: ¥72.00
-      oneTime: null
-    - name: 聚财版
-      traffic: 300 GB
-      monthly: ¥9.00
-      quarterly: ¥27.00
-      semiannual: ¥54.00
-      annual: ¥108.00
-      oneTime: null
-    - name: 旺财版
-      traffic: 600 GB
-      monthly: ¥16.00
-      quarterly: ¥48.00
-      semiannual: ¥96.00
-      annual: ¥192.00
-      oneTime: null
-    - name: 来财版
-      traffic: 100 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: null
-      oneTime: ¥68.00
-    - name: 鸿运版
-      traffic: 300 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: null
-      oneTime: ¥99.00
-  targetUrl: https://888.jiuyundl.com/#/register?code=RvrYuabu
-- name: 宝云
-  slug: baoyun
-  relationship: partner
-  goUrl: /go/baoyun/
-  affUrl: /go/baoyun/
-  coupon: 暂无优惠
-  couponDiscount: null
-  streamingSupport: 支持常规流媒体服务
-  clientSupport: 2-5台设备同时在线
-  bestFor:
-    - 低预算
-    - 大流量
-    - 流媒体
-    - 多设备使用
-  macDownloadIntel: https://www.ruanjiandaohang.com/xz/QiNHVx43bsUf.dmg
-  macDownloadAppleSilicon: https://www.ruanjiandaohang.com/xz/G3I1M0SGUdsI.dmg
-  downloadGuide: https://www.ruanjiandaohang.com/
-  updatedAt: '2026-09-19'
-  features:
-    - 支持常规流媒体服务
-    - 2–5 台设备同时在线
-    - 在线客服与售后技术支持
-    - 常规套餐默认每月订单日重置流量
-    - 当月未使用完的常规套餐流量不会累积至下个月
-  plans:
-    - name: 年付轻量特惠
-      traffic: 100 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: ¥32.00
-      oneTime: null
-    - name: 季付轻量特惠
-      traffic: 500 GB
-      monthly: null
-      quarterly: ¥16.00
-      semiannual: null
-      annual: null
-      oneTime: null
-    - name: 福宝
-      traffic: 200 GB
-      monthly: ¥4.00
-      quarterly: ¥12.00
-      semiannual: ¥24.00
-      annual: ¥48.00
-      oneTime: null
-    - name: 财宝
-      traffic: 500 GB
-      monthly: ¥8.00
-      quarterly: ¥24.00
-      semiannual: ¥48.00
-      annual: ¥96.00
-      oneTime: null
-    - name: 金宝
-      traffic: 1000 GB
-      monthly: ¥13.00
-      quarterly: ¥39.00
-      semiannual: ¥78.00
-      annual: ¥156.00
-      oneTime: null
-    - name: 传家宝
-      traffic: 200 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: null
-      oneTime: ¥29.00
-    - name: 传世宝
-      traffic: 500 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: null
-      oneTime: ¥39.00
-    - name: 传承宝
-      traffic: 1000 GB
-      monthly: null
-      quarterly: null
-      semiannual: null
-      annual: null
-      oneTime: ¥59.00
-  aiSupport: 未提供明确资料
-  targetUrl: https://888by.baoyundl.com/#/register?code=9thDnaCR

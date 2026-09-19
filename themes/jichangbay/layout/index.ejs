@@ -75,7 +75,8 @@
             let providers = site.data.providers ? JSON.parse(JSON.stringify(site.data.providers)) : [];
             const fixedFirst = '微风网络';
             const fixedSecond = '飞猫云';
-            const pool = ['闪跃', '灵猫', 'firefly', '无忧链接', '跨界云'];
+            const fixedThird = 'firefly';
+            const pool = ['闪跃', '灵猫', '无忧链接', '跨界云'];
 
             // Randomize pool using a simple build-time shuffle
             for(let i = pool.length - 1; i > 0; i--){
@@ -83,7 +84,7 @@
               [pool[i], pool[j]] = [pool[j], pool[i]];
             }
 
-            const featuredOrder = [fixedFirst, fixedSecond, ...pool];
+            const featuredOrder = [fixedFirst, fixedSecond, fixedThird, ...pool];
 
             providers = providers.sort((a, b) => {
               let idxA = featuredOrder.findIndex(name => name.toLowerCase() === a.name.toLowerCase());
@@ -132,8 +133,8 @@
                 if (!lowestPlan) {
                   return {
                     plan: null,
-                    startPrice: '\u6682\u65e0\u6708\u4ed8',
-                    plainPrice: '\u6682\u65e0\u6708\u4ed8',
+                    startPrice: '',
+                    plainPrice: '',
                     value: 999999
                   };
                 }
@@ -206,7 +207,14 @@
 
 
       <div class="quick-buy-grid">
-        <% providers.slice(0, 7).forEach((p, i) => {
+        <%
+            const quickBuyProviders = [
+              ...providers.slice(0, 7),
+              providers.find(p => p.slug === 'jiuyun'),
+              providers.find(p => p.slug === 'baoyun')
+            ].filter(Boolean);
+          %>
+          <% quickBuyProviders.forEach((p, i) => {
             const meta = getProviderMeta(p);
         %>
           <div class="card <%= i < 2 ? 'card-featured' : 'card-small' %>">
@@ -476,7 +484,7 @@
 
                   const monthlyMeta = getLowestMonthlyMeta(p);
 
-                  let startPrice = monthlyMeta.plainPrice;
+                  let startPrice = monthlyMeta.plainPrice || '—';
 
                   let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
                   if(startTraffic !== '-') {
@@ -545,7 +553,7 @@
 
               const monthlyMeta = getLowestMonthlyMeta(p);
 
-              let startPrice = monthlyMeta.plainPrice;
+              let startPrice = monthlyMeta.plainPrice || '—';
 
               let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
               if(startTraffic !== '-') {
@@ -833,7 +841,9 @@
               </div>
             </div>
             <div class="provider-header-cta" style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
-               <div style="font-weight:bold; color:var(--c-primary);"><%= getProviderMeta(p).startPrice %></div>
+               <% const pMeta = getProviderMeta(p); if (pMeta.startPrice) { %>
+               <div style="font-weight:bold; color:var(--c-primary);"><%= pMeta.startPrice %></div>
+               <% } %>
                <% if (p.coupon && !p.coupon.includes('暂无优惠')) { %>
                  <div style="font-size:0.85rem; color:#f59e0b;">优惠码：<%= p.coupon %> · <%= p.couponDiscount || '优惠' %></div>
                <% } %>
@@ -842,7 +852,9 @@
           </div>
           <div class="provider-divider" style="border-bottom: 1px solid #e2e8f0; margin-top: 18px; margin-bottom: 24px;"></div>
           <div class="provider-meta">
+            <% if (displayPrice) { %>
             <span class="meta-item"><strong>价格:</strong> <%= displayPrice %></span>
+            <% } %>
             <span class="meta-item"><strong>优惠码:</strong> <%= p.coupon %><%= p.couponDiscount ? (' (' + p.couponDiscount + ')') : '' %></span>
             <span class="meta-item"><strong>AI 支持:</strong> <%= p.aiSupport %></span>
             <span class="meta-item"><strong>流媒体:</strong> <%= p.streamingSupport %></span>
