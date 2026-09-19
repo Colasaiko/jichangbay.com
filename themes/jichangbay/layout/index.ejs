@@ -111,14 +111,47 @@
                 }
                 return null;
               }
+
+              function getLowestMonthlyMeta(p) {
+                let lowestPlan = null;
+                let lowestPrice = Infinity;
+
+                if (p && Array.isArray(p.plans)) {
+                  p.plans.forEach(pl => {
+                    if (!pl || !pl.monthly) return;
+
+                    const value = parseIntentPrice(pl.monthly);
+
+                    if (value !== null && value < lowestPrice) {
+                      lowestPrice = value;
+                      lowestPlan = pl;
+                    }
+                  });
+                }
+
+                if (!lowestPlan) {
+                  return {
+                    plan: null,
+                    startPrice: '\u6682\u65e0\u6708\u4ed8',
+                    plainPrice: '\u6682\u65e0\u6708\u4ed8',
+                    value: 999999
+                  };
+                }
+
+                const rawPrice = String(lowestPlan.monthly)
+                  .replace('\u00a5 ', '\u00a5');
+
+                return {
+                  plan: lowestPlan,
+                  startPrice: rawPrice + ' / \u6708\u8d77',
+                  plainPrice: rawPrice + ' / \u6708',
+                  value: lowestPrice
+                };
+              }
               function getProviderMeta(p) {
                 const firstPlan = p.plans && p.plans[0];
-                let startPrice = '-';
-                if (firstPlan) {
-                  if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月起';
-                  else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年起';
-                  else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次起';
-                }
+                const monthlyMeta = getLowestMonthlyMeta(p);
+                let startPrice = monthlyMeta.startPrice;
 
                 let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
                 if(startTraffic !== '-') {
@@ -138,11 +171,7 @@
                 let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                 if (!bestForStr || bestForStr === '') bestForStr = '-';
 
-                  let numPrice = 9999;
-                  if (firstPlan) {
-                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
-                    if (pMatch) numPrice = parseFloat(pMatch[0]);
-                  }
+                  let numPrice = monthlyMeta.value;
 
                   let numTraffic = 0;
                   if (startTraffic !== '-') {
@@ -154,7 +183,7 @@
                   }
                   const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
 
-                return { startPrice, startTraffic, network, tags, bestForStr, logoSrc };
+                return { startPrice, startTraffic, network, tags, bestForStr, logoSrc, lowestPriceValue: monthlyMeta.value };
             }
           %>
 
@@ -444,12 +473,10 @@
               <% providers.forEach(function(p, index) { %>
                 <%
                   const firstPlan = p.plans && p.plans[0];
-                  let startPrice = '-';
-                  if (firstPlan) {
-                    if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
-                    else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
-                    else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
-                  }
+
+                  const monthlyMeta = getLowestMonthlyMeta(p);
+
+                  let startPrice = monthlyMeta.plainPrice;
 
                   let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
                   if(startTraffic !== '-') {
@@ -472,11 +499,7 @@
                   if (!bestForStr || bestForStr === '') bestForStr = '-';
 
 
-                  let numPrice = 9999;
-                  if (firstPlan) {
-                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
-                    if (pMatch) numPrice = parseFloat(pMatch[0]);
-                  }
+                  let numPrice = monthlyMeta.value;
 
                   let numTraffic = 0;
                   if (startTraffic !== '-') {
@@ -519,12 +542,10 @@
           <% providers.forEach(function(p, index) { %>
             <%
               const firstPlan = p.plans && p.plans[0];
-              let startPrice = '-';
-              if (firstPlan) {
-                if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
-                else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
-                else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
-              }
+
+              const monthlyMeta = getLowestMonthlyMeta(p);
+
+              let startPrice = monthlyMeta.plainPrice;
 
               let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
               if(startTraffic !== '-') {
@@ -546,11 +567,7 @@
               let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
               if (!bestForStr || bestForStr === '') bestForStr = '-';
 
-                  let numPrice = 9999;
-                  if (firstPlan) {
-                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
-                    if (pMatch) numPrice = parseFloat(pMatch[0]);
-                  }
+                  let numPrice = monthlyMeta.value;
 
                   let numTraffic = 0;
                   if (startTraffic !== '-') {
@@ -805,7 +822,7 @@
     <% if (providers.length) { %>
       <% providers.forEach(function(p, index) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
-        <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
+        <% const providerMonthlyMeta = getLowestMonthlyMeta(p); const displayPrice = providerMonthlyMeta.startPrice; %>
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header" style="justify-content: space-between; flex-wrap: wrap;">
             <div style="display:flex; align-items:center; gap:15px;">
