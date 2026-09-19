@@ -111,33 +111,46 @@
                 }
                 return null;
               }
+
               function getLowestMonthlyPlan(p) {
-                if (!p.plans) return null;
-                let lowest = null;
+                if (!p.plans || !Array.isArray(p.plans)) return null;
+
+                let lowestPlan = null;
                 let lowestPrice = Infinity;
+
                 p.plans.forEach(pl => {
-                  if (pl.monthly) {
-                    const price = parseIntentPrice(pl.monthly);
-                    if (price !== null && price < lowestPrice) {
-                      lowestPrice = price;
-                      lowest = pl;
-                    }
+                  if (!pl.monthly) return;
+
+                  const value = parseIntentPrice(pl.monthly);
+
+                  if (value !== null && value < lowestPrice) {
+                    lowestPrice = value;
+                    lowestPlan = pl;
                   }
                 });
-                return lowest;
+
+                return lowestPlan;
               }
+
               function getPurchaseUrl(p) {
                 return p.goUrl || p.affUrl || p.officialUrl || '#';
               }
               function getProviderMeta(p) {
                 const firstPlan = p.plans && p.plans[0];
+
+                const lowestMonthlyPlan = getLowestMonthlyPlan(p);
+
                 let startPrice = '暂无月付';
-                let lowestValue = 999999;
-                const lowestMonthly = getLowestMonthlyPlan(p);
-                if (lowestMonthly && lowestMonthly.monthly) {
-                    startPrice = lowestMonthly.monthly.replace('¥ ', '¥') + ' / 月起';
-                    const val = parseIntentPrice(lowestMonthly.monthly);
-                    if (val !== null) lowestValue = val;
+                let lowestPriceValue = 999999;
+
+                if (lowestMonthlyPlan && lowestMonthlyPlan.monthly) {
+                  startPrice = lowestMonthlyPlan.monthly.replace('¥ ', '¥') + ' / 月起';
+
+                  const price = parseIntentPrice(lowestMonthlyPlan.monthly);
+
+                  if (price !== null) {
+                    lowestPriceValue = price;
+                  }
                 }
 
                 let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
@@ -170,7 +183,7 @@
                   }
                   const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
 
-                return { startPrice, startTraffic, network, tags, bestForStr, logoSrc, lowestPriceValue: lowestValue };
+                return { startPrice, startTraffic, network, tags, bestForStr, logoSrc, lowestPriceValue };
             }
           %>
 
@@ -813,7 +826,7 @@
     <% if (providers.length) { %>
       <% providers.forEach(function(p, index) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
-        <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/�? : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
+        <% const meta = getProviderMeta(p); const displayPrice = meta.startPrice; %>
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header" style="justify-content: space-between; flex-wrap: wrap;">
             <div style="display:flex; align-items:center; gap:15px;">
