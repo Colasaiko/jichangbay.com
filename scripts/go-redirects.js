@@ -16,8 +16,14 @@ hexo.extend.generator.register('go_redirects', function(locals) {
     if (!p.name) throw new Error('Provider missing name');
     if (!p.slug) throw new Error('Provider missing slug for ' + p.name);
     
-    const targetUrl = p.affUrl || p.officialUrl;
-    if (!targetUrl) throw new Error('Provider missing affUrl and officialUrl for ' + p.name);
+    const targetUrl = p.targetUrl;
+    if (!targetUrl) {
+      throw new Error('Provider missing targetUrl for ' + p.name);
+    }
+
+    if (targetUrl.startsWith('/go/') || targetUrl.includes('jichangbay.com/go/')) {
+      throw new Error('Provider targetUrl cannot point to /go/ for ' + p.name);
+    }
     
     if (slugs.has(p.slug)) throw new Error('Duplicate slug found: ' + p.slug);
     slugs.add(p.slug);

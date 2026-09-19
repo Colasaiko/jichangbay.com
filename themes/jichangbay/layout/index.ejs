@@ -1,36 +1,36 @@
 <%
   const faqItems = [
     {
-      q: "2026 机场推荐应该先看哪些参数�?,
-      a: "选择机场时，建议优先关注起步价格、每月可用流量、支持的线路类型（如 IPLC、IEPL 等专线或普通中转），以及是否支持你需要的特定流媒体或 AI 工具（如 ChatGPT）。不同用户的核心需求不同，看重延迟可选专线，看重性价比可选择便宜的大流量套餐�?
+      q: "2026 机场推荐应该先看哪些参数？",
+      a: "选择机场时，建议优先关注起步价格、每月可用流量、支持的线路类型（如 IPLC、IEPL 等专线或普通中转），以及是否支持你需要的特定流媒体或 AI 工具（如 ChatGPT）。不同用户的核心需求不同，看重延迟可选专线，看重性价比可选择便宜的大流量套餐。"
     },
     {
       q: "稳定机场推荐通常应该关注什么？",
-      a: "寻找稳定机场推荐时，主要看该品牌是否具备足够的带宽冗余和优质的专线网络。公网中转容易在高峰期受到影响，�?IPLC �?IEPL 专线虽然价格稍高，但在特殊时期表现更加可靠。此外，查看商家的运营时间长短也能从侧面反映其稳定性�?
+      a: "寻找稳定机场推荐时，主要看该品牌是否具备足够的带宽冗余和优质的专线网络。公网中转容易在高峰期受到影响，而 IPLC 或 IEPL 专线虽然价格稍高，但在特殊时期表现更加可靠。此外，查看商家的运营时间长短也能从侧面反映其稳定性。"
     },
     {
       q: "便宜机场推荐应该只看价格吗？",
-      a: "不建议只看价格。部分低价套餐可能在设备数量、节点数量、流量或线路方面存在不同限制，实际体验也可能受到晚高峰网络负载影响。选择便宜机场时，建议同时比较价格、流量、线路和使用需求，避免购买与自身需求不匹配的套餐�?
+      a: "不建议只看价格。部分低价套餐可能在设备数量、节点数量、流量或线路方面存在不同限制，实际体验也可能受到晚高峰网络负载影响。选择便宜机场时，建议同时比较价格、流量、线路和使用需求，避免购买与自身需求不匹配的套餐。"
     },
     {
       q: "月付、年付和不限时机场套餐有什么区别？",
-      a: "月付套餐付款周期较短，适合先确认服务是否符合需求；部分品牌的年付套餐平均成本可能更低，但一次性付款金额也更高；不限时或按量计费套餐则更适合使用频率较低、不希望每月流量重置的用户。具体计费规则仍应以对应品牌套餐页面为准�?
+      a: "月付套餐付款周期较短，适合先确认服务是否符合需求；部分品牌的年付套餐平均成本可能更低，但一次性付款金额也更高；不限时或按量计费套餐则更适合使用频率较低、不希望每月流量重置的用户。具体计费规则仍应以对应品牌套餐页面为准。"
     },
     {
       q: "100GB 流量一个月通常够用吗？",
-      a: "是否够用主要取决于个人使用习惯。对于网页浏览、聊天、AI 工具和偶尔观看视频等轻度使用场景�?00GB 对部分用户可能够用；如果经常观看高清视频、下载大文件或多设备共同使用，可以考虑 200GB 或更高流量的套餐�?
+      a: "是否够用主要取决于个人使用习惯。对于网页浏览、聊天、AI 工具和偶尔观看视频等轻度使用场景，100GB 对部分用户可能够用；如果经常观看高清视频、下载大文件或多设备共同使用，可以考虑 200GB 或更高流量的套餐。"
     },
     {
       q: "IPLC、IEPL 和普通中转线路有什么区别？",
-      a: "IPLC、IEPL 与普通公网中转在线路架构、路由方式和成本上有所不同。部分用户会优先选择标明专线的套餐，希望获得更稳定的使用体验，但实际延迟、速度和可用性仍会受到服务商线路配置、所在地区、运营商以及当前网络环境影响�?
+      a: "IPLC、IEPL 与普通公网中转在线路架构、路由方式和成本上有所不同。部分用户会优先选择标明专线的套餐，希望获得更稳定的使用体验，但实际延迟、速度和可用性仍会受到服务商线路配置、所在地区、运营商以及当前网络环境影响。"
     },
     {
       q: "使用 ChatGPT、Gemini、Claude 时应该注意什么？",
-      a: "ChatGPT、Gemini、Claude 等服务的可用性可能受到地区、IP 类型、服务方政策及节点状态影响。如果主要用途是 AI 工具，建议购买前确认品牌是否明确标注相关支持，并以实际使用情况为准�?
+      a: "ChatGPT、Gemini、Claude 等服务的可用性可能受到地区、IP 类型、服务方政策及节点状态影响。如果主要用途是 AI 工具，建议购买前确认品牌是否明确标注相关支持，并以实际使用情况为准。"
     },
     {
-      q: "机场优惠码应该怎么使用�?,
-      a: "部分品牌会在特定节日或日常提供长期折扣码。通常你需要在其官网的注册购买页面、收银台或结账界面找到“优惠码”或“Promo Code”输入框，填入本站提供的机场优惠码。如果优惠码仍然有效并适用于当前套餐，应用后通常可以在结算页面看到对应优惠结果。优惠有效期和适用范围以购买页面为准�?
+      q: "机场优惠码应该怎么使用？",
+      a: "部分品牌会在特定节日或日常提供长期折扣码。通常你需要在其官网的注册购买页面、收银台或结账界面找到“优惠码”或“Promo Code”输入框，填入本站提供的机场优惠码。如果优惠码仍然有效并适用于当前套餐，应用后通常可以在结算页面看到对应优惠结果。优惠有效期和适用范围以购买页面为准。"
     }
   ];
 %>
@@ -41,7 +41,7 @@
     <div class="logo">
       <a href="/">
         <svg class="logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12A10 10 0 1 1 12 2a10 10 0 0 1 10 10zM12 2v20M2 12h20M4.9 4.9l14.2 14.2M4.9 19.1 19.1 4.9"/></svg>
-        <span class="logo-text">机场�?/ JichangBay</span>
+        <span class="logo-text">机场湾 / JichangBay</span>
       </a>
     </div>
     <nav class="desktop-nav">
@@ -74,8 +74,8 @@
 <%
             let providers = site.data.providers ? JSON.parse(JSON.stringify(site.data.providers)) : [];
             const fixedFirst = '微风网络';
-            const fixedSecond = '飞猫�?;
-            const pool = ['闪跃', '灵猫', 'firefly', '无忧链接', '跨界�?];
+            const fixedSecond = '飞猫云';
+            const pool = ['闪跃', '灵猫', 'firefly', '无忧链接', '跨界云'];
 
             // Randomize pool using a simple build-time shuffle
             for(let i = pool.length - 1; i > 0; i--){
@@ -111,56 +111,18 @@
                 }
                 return null;
               }
-              function getLowestMonthlyPlan(p) {
-                if (!p || !Array.isArray(p.plans)) {
-                  return null;
-                }
-
-                let lowestPlan = null;
-                let lowestPrice = Infinity;
-
-                p.plans.forEach(pl => {
-                  if (!pl.monthly) return;
-
-                  const price = parseIntentPrice(pl.monthly);
-
-                  if (price !== null && price < lowestPrice) {
-                    lowestPrice = price;
-                    lowestPlan = pl;
-                  }
-                });
-
-                return lowestPlan;
-              }
-
-              function getPurchaseUrl(p) {
-                if (!p || !p.slug) {
-                  return '#';
-                }
-                return '/go/' + encodeURIComponent(p.slug) + '/';
-              }
-
               function getProviderMeta(p) {
-                                const firstPlan = p.plans && p.plans[0];
-
-                const lowestMonthlyPlan = getLowestMonthlyPlan(p);
-
-                let startPrice = '暂无月付';
-                let lowestPriceValue = 999999;
-
-                if (lowestMonthlyPlan && lowestMonthlyPlan.monthly) {
-                  startPrice = lowestMonthlyPlan.monthly.replace('¥ ', '¥') + ' / 月起';
-
-                  const price = parseIntentPrice(lowestMonthlyPlan.monthly);
-
-                  if (price !== null) {
-                    lowestPriceValue = price;
-                  }
+                const firstPlan = p.plans && p.plans[0];
+                let startPrice = '-';
+                if (firstPlan) {
+                  if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月起';
+                  else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年起';
+                  else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次起';
                 }
 
                 let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
                 if(startTraffic !== '-') {
-                   startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase() + ' �?;
+                   startTraffic = startTraffic.replace(/([0-9]+)\s*(GB|TB)/i, '$1 $2').toUpperCase() + ' 起';
                 }
 
                 let network = '线路信息见套餐页';
@@ -170,13 +132,17 @@
 
                 let tags = [];
                 if (p.aiSupport === '支持 AI') tags.push('AI支持');
-                if (p.streamingSupport === '支持流媒体解�?) tags.push('流媒�?);
-                if (p.clientSupport === '不限设备/支持多端') tags.push('多设�?);
-                if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限�?);
+                if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
+                if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
+                if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
                 let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                 if (!bestForStr || bestForStr === '') bestForStr = '-';
 
-
+                  let numPrice = 9999;
+                  if (firstPlan) {
+                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
+                    if (pMatch) numPrice = parseFloat(pMatch[0]);
+                  }
 
                   let numTraffic = 0;
                   if (startTraffic !== '-') {
@@ -188,15 +154,15 @@
                   }
                   const logoSrc = p.logo || ('https://ui-avatars.com/api/?name=' + encodeURIComponent(p.name) + '&background=0f172a&color=fff&rounded=true&bold=true');
 
-                return { startPrice, startTraffic, network, tags, bestForStr, logoSrc, lowestPriceValue };
+                return { startPrice, startTraffic, network, tags, bestForStr, logoSrc };
             }
           %>
 
     <!-- Hero Section -->
     <section id="top" class="hero-section">
-      <h1>2026 机场推荐�?VPN 套餐选购指南</h1>
-      <p class="hero-subtitle">机场湾整理：2026机场推荐、最新套餐价格（支持月付/年付）、每月流量规则、专线网络、AI工具解锁、流媒体支持情况及优惠码。用户可以根据自身预算与流量需求，直接筛选并前往官方入口查看更符合自身需求的服务选项�?/p>
-      <p class="hero-meta">最后更新时�? <%= config.lastUpdated %></p>
+      <h1>2026 机场推荐与 VPN 套餐选购指南</h1>
+      <p class="hero-subtitle">机场湾整理：2026机场推荐、最新套餐价格（支持月付/年付）、每月流量规则、专线网络、AI工具解锁、流媒体支持情况及优惠码。用户可以根据自身预算与流量需求，直接筛选并前往官方入口查看更符合自身需求的服务选项。</p>
+      <p class="hero-meta">最后更新时间: <%= config.lastUpdated %></p>
       <div class="hero-actions">
         <a href="#recommendations" class="btn btn-primary">快速选购</a>
         <a href="#comparison" class="btn btn-outline-light">套餐对比</a>
@@ -207,7 +173,7 @@
     <!-- Quick Buy Section -->
     <section id="recommendations" class="section-block">
       <h2>2026 机场快速选购</h2>
-      <p style="margin-bottom: 20px; color: #334155;">按照预算与需求快速找到适合的稳定机场推荐、便宜机场推荐与专线机场推荐。无论你是需要按量计费、大流量套餐、小流量轻度使用，还是月�?年付机场，都可以在此直接查找�?/p>
+      <p style="margin-bottom: 20px; color: #334155;">按照预算与需求快速找到适合的稳定机场推荐、便宜机场推荐与专线机场推荐。无论你是需要按量计费、大流量套餐、小流量轻度使用，还是月付/年付机场，都可以在此直接查找。</p>
 
 
       <div class="quick-buy-grid">
@@ -228,17 +194,17 @@
       </div>
 
       <div class="quick-tags-container" style="margin-top:24px;">
-        <h4 style="margin-bottom:12px;font-size:1rem;">按需求快速找�?/h4>
+        <h4 style="margin-bottom:12px;font-size:1rem;">按需求快速找：</h4>
         <div class="quick-tags">
-          <button class="qt-btn" data-filter="budget-20">¥20/月以�?/button>
-          <button class="qt-btn" data-filter="budget-30">¥30/月以�?/button>
+          <button class="qt-btn" data-filter="budget-20">¥20/月以内</button>
+          <button class="qt-btn" data-filter="budget-30">¥30/月以内</button>
           <button class="qt-btn" data-filter="budget-year">年付低价</button>
-          <button class="qt-btn" data-filter="traffic-200">100�?00GB</button>
+          <button class="qt-btn" data-filter="traffic-200">100–200GB</button>
           <button class="qt-btn" data-filter="traffic-500">500GB+</button>
           <button class="qt-btn" data-filter="ai">AI 工具</button>
-          <button class="qt-btn" data-filter="stream">流媒�?/button>
-          <button class="qt-btn" data-filter="onetime">不限时套�?/button>
-          <button class="qt-btn" data-filter="multidevice">多设�?/button>
+          <button class="qt-btn" data-filter="stream">流媒体</button>
+          <button class="qt-btn" data-filter="onetime">不限时套餐</button>
+          <button class="qt-btn" data-filter="multidevice">多设备</button>
           <button class="qt-btn" data-filter="iplc">专线线路</button>
         </div>
       </div>
@@ -246,8 +212,8 @@
 
     <!-- Plan Filter Section -->
     <section id="plan-filter" class="section-block">
-      <h2>按需求筛选套�?/h2>
-      <p style="margin-bottom: 20px; color: #334155;">选择预算、流量和使用需求，机场湾会从当前收录品牌中筛选符合条件的选项�?/p>
+      <h2>按需求筛选套餐</h2>
+      <p style="margin-bottom: 20px; color: #334155;">选择预算、流量和使用需求，机场湾会从当前收录品牌中筛选符合条件的选项。</p>
 
       <div class="filter-controls">
         <div class="filter-group">
@@ -256,7 +222,7 @@
             <option value="all">全部</option>
             <option value="monthly">月付</option>
             <option value="annual">年付</option>
-            <option value="onetime">不限�?/ 一次�?/option>
+            <option value="onetime">不限时 / 一次性</option>
           </select>
         </div>
         <div class="filter-group">
@@ -267,7 +233,7 @@
           </select>
         </div>
         <div class="filter-group">
-          <label>最低流�?/label>
+          <label>最低流量</label>
           <select id="filter-traffic">
             <option value="all">不限</option>
             <option value="50">50GB+</option>
@@ -280,12 +246,12 @@
         </div>
         <div class="filter-group filter-checkboxes">
           <label><input type="checkbox" id="filter-ai"> 支持 AI</label>
-          <label><input type="checkbox" id="filter-stream"> 支持流媒�?/label>
-          <label><input type="checkbox" id="filter-device"> 多设�?/label>
+          <label><input type="checkbox" id="filter-stream"> 支持流媒体</label>
+          <label><input type="checkbox" id="filter-device"> 多设备</label>
           <label><input type="checkbox" id="filter-network"> 专线</label>
         </div>
         <div class="filter-actions">
-           <button id="btn-reset-filter" class="btn btn-outline" style="padding:4px 12px;font-size:0.8rem;">重置筛�?/button>
+           <button id="btn-reset-filter" class="btn btn-outline" style="padding:4px 12px;font-size:0.8rem;">重置筛选</button>
         </div>
       </div>
 
@@ -306,7 +272,7 @@
              clientSupport: p.clientSupport,
              coupon: p.coupon,
              couponDiscount: p.couponDiscount,
-             purchaseUrl: getPurchaseUrl(p),
+             affUrl: p.affUrl || p.officialUrl,
              logoSrc: meta.logoSrc,
              network: meta.network,
              tags: meta.tags,
@@ -320,7 +286,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "<%= config.url %>/#organization",
-  "name": "机场�?JichangBay",
+  "name": "机场湾 JichangBay",
   "url": "<%= config.url %>/",
   "email": "mailto:colasaiko15@gmail.com"
 }
@@ -345,7 +311,7 @@
   "@type": "WebSite",
   "@id": "<%= config.url %>/#website",
   "url": "<%= config.url %>/",
-  "name": "机场�?JichangBay",
+  "name": "机场湾 JichangBay",
   "inLanguage": "zh-CN",
   "publisher": {
     "@id": "<%= config.url %>/#organization"
@@ -357,7 +323,7 @@
     <!-- Deals Section -->
     <section id="deals" class="section-block">
       <h2>当前优惠与优惠码</h2>
-      <p style="margin-bottom: 20px; color: #334155;">这里集中整理目前数据中明确提供的优惠信息，具体活动以购买页面显示为准�?/p>
+      <p style="margin-bottom: 20px; color: #334155;">这里集中整理目前数据中明确提供的优惠信息，具体活动以购买页面显示为准。</p>
       <div class="deals-grid">
         <%
            const deals = providers.filter(p => p.coupon && !p.coupon.includes('暂无优惠'));
@@ -372,10 +338,10 @@
             <div class="deal-discount"><%= p.couponDiscount || '优惠' %></div>
             <div class="deal-code">
                <span><%= p.coupon %></span>
-               <button class="btn-copy-code" data-code="<%= p.coupon %>" aria-label="复制优惠�?>复制优惠�?/button>
+               <button class="btn-copy-code" data-code="<%= p.coupon %>" aria-label="复制优惠码">复制优惠码</button>
             </div>
             <div class="deal-action" style="margin-top:10px;">
-               <a href="<%= getPurchaseUrl(p) %>" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary btn-block">前往购买</a>
+               <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="noopener nofollow" class="btn btn-primary btn-block">前往购买</a>
             </div>
           </div>
 
@@ -386,38 +352,38 @@
 
     <!-- Before Buy Section -->
     <section id="before-buy" class="section-block">
-      <h2>购买前建议确�?/h2>
-      <p style="margin-bottom: 24px; color: #334155;">不同品牌和套餐的计费方式、流量规则与支持能力可能不同，购买前建议先确认以下信息�?/p>
+      <h2>购买前建议确认</h2>
+      <p style="margin-bottom: 24px; color: #334155;">不同品牌和套餐的计费方式、流量规则与支持能力可能不同，购买前建议先确认以下信息。</p>
       <div class="bb-grid">
         <div class="bb-card">
           <div class="bb-icon">⏱️</div>
           <h4 class="bb-title">1. 套餐周期</h4>
-          <p class="bb-desc">确认是月付、季付、年付或一次�?不限时。不要把年付套餐误认为月付�?/p>
+          <p class="bb-desc">确认是月付、季付、年付或一次性/不限时。不要把年付套餐误认为月付。</p>
         </div>
         <div class="bb-card">
           <div class="bb-icon">📊</div>
           <h4 class="bb-title">2. 流量规则</h4>
-          <p class="bb-desc">确认每月流量、套餐总流量、不限时流量是否重置。如果数据未明确，请以官网为准�?/p>
+          <p class="bb-desc">确认每月流量、套餐总流量、不限时流量是否重置。如果数据未明确，请以官网为准。</p>
         </div>
         <div class="bb-card">
           <div class="bb-icon">📱</div>
           <h4 class="bb-title">3. 设备支持</h4>
-          <p class="bb-desc">确认是否限制设备数量，是否支持多设备同时在线�?/p>
+          <p class="bb-desc">确认是否限制设备数量，是否支持多设备同时在线。</p>
         </div>
         <div class="bb-card">
           <div class="bb-icon">🤖</div>
-          <h4 class="bb-title">4. AI / 流媒�?/h4>
-          <p class="bb-desc">如果主要用途是 ChatGPT、Netflix 等，购买前确认对应品牌是否明确支持解锁�?/p>
+          <h4 class="bb-title">4. AI / 流媒体</h4>
+          <p class="bb-desc">如果主要用途是 ChatGPT、Netflix 等，购买前确认对应品牌是否明确支持解锁。</p>
         </div>
         <div class="bb-card">
           <div class="bb-icon">🎫</div>
-          <h4 class="bb-title">5. 优惠�?/h4>
-          <p class="bb-desc">如果当前有优惠码，确认是否需要在购买页面手动填写�?/p>
+          <h4 class="bb-title">5. 优惠码</h4>
+          <p class="bb-desc">如果当前有优惠码，确认是否需要在购买页面手动填写。</p>
         </div>
         <div class="bb-card">
           <div class="bb-icon">⚖️</div>
           <h4 class="bb-title">6. 服务条款</h4>
-          <p class="bb-desc">价格、套餐、退款、节点和服务规则：以最终购买页面展示为准�?/p>
+          <p class="bb-desc">价格、套餐、退款、节点和服务规则：以最终购买页面展示为准。</p>
         </div>
       </div>
     </section>
@@ -425,7 +391,7 @@
     <!-- Comparison Section -->
     <section id="comparison" class="section-block">
       <h2>品牌总对比表</h2>
-      <p style="margin-bottom: 20px; color: #334155;">用户可以比较各品牌的套餐价格、流量、线路与适合场景。使用搜索框或通过价格、流量排序，快速在最新机场套餐对比中找到合适的优质机场推荐�?/p>
+      <p style="margin-bottom: 20px; color: #334155;">用户可以比较各品牌的套餐价格、流量、线路与适合场景。使用搜索框或通过价格、流量排序，快速在最新机场套餐对比中找到合适的优质机场推荐。</p>
 
       <div class="comp-toolbar">
         <div class="comp-search">
@@ -433,7 +399,7 @@
           <input type="text" id="comp-search-input" placeholder="搜索品牌，例如：微风、飞猫、firefly" />
         </div>
         <div class="comp-sort">
-          <label for="comp-sort-select" style="font-size:0.9rem; font-weight:600; color:#0f172a;">排序�?/label>
+          <label for="comp-sort-select" style="font-size:0.9rem; font-weight:600; color:#0f172a;">排序：</label>
           <select id="comp-sort-select">
             <option value="default">默认顺序</option>
             <option value="price-asc">价格从低到高</option>
@@ -444,7 +410,7 @@
         <button id="comp-reset-btn" class="btn btn-outline" style="padding: 8px 16px;">重置</button>
       </div>
       <div id="comp-no-results" class="comp-no-results" aria-live="polite" style="display:none;">
-        没有找到符合关键词的品牌�?button id="comp-clear-btn" class="btn btn-primary btn-small" style="margin-left: 10px;">清除搜索</button>
+        没有找到符合关键词的品牌。<button id="comp-clear-btn" class="btn btn-primary btn-small" style="margin-left: 10px;">清除搜索</button>
       </div>
 
       <div class="comparison-container">
@@ -480,9 +446,9 @@
                   const firstPlan = p.plans && p.plans[0];
                   let startPrice = '-';
                   if (firstPlan) {
-                    if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / �?;
-                    else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / �?;
-                    else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / �?;
+                    if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
+                    else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
+                    else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
                   }
 
                   let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
@@ -497,17 +463,20 @@
 
                   let tags = [];
                   if (p.aiSupport === '支持 AI') tags.push('AI支持');
-                  if (p.streamingSupport === '支持流媒体解�?) tags.push('流媒�?);
-                  if (p.clientSupport === '不限设备/支持多端') tags.push('多设�?);
-                  if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限�?);
+                  if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
+                  if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
+                  if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
                   tags = tags.slice(0, 3);
 
                   let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
                   if (!bestForStr || bestForStr === '') bestForStr = '-';
 
 
-                  const meta = getProviderMeta(p);
-                  let numPrice = meta.lowestPriceValue;
+                  let numPrice = 9999;
+                  if (firstPlan) {
+                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
+                    if (pMatch) numPrice = parseFloat(pMatch[0]);
+                  }
 
                   let numTraffic = 0;
                   if (startTraffic !== '-') {
@@ -552,9 +521,9 @@
               const firstPlan = p.plans && p.plans[0];
               let startPrice = '-';
               if (firstPlan) {
-                if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / �?;
-                else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / �?;
-                else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / �?;
+                if (firstPlan.monthly) startPrice = firstPlan.monthly.replace('¥ ', '¥') + ' / 月';
+                else if (firstPlan.annual) startPrice = firstPlan.annual.replace('¥ ', '¥') + ' / 年';
+                else if (firstPlan.oneTime) startPrice = firstPlan.oneTime.replace('¥ ', '¥') + ' / 次';
               }
 
               let startTraffic = (firstPlan ? firstPlan.traffic : '-') || '-';
@@ -569,16 +538,19 @@
 
               let tags = [];
               if (p.aiSupport === '支持 AI') tags.push('AI支持');
-              if (p.streamingSupport === '支持流媒体解�?) tags.push('流媒�?);
-              if (p.clientSupport === '不限设备/支持多端') tags.push('多设�?);
-              if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限�?);
+              if (p.streamingSupport === '支持流媒体解锁') tags.push('流媒体');
+              if (p.clientSupport === '不限设备/支持多端') tags.push('多设备');
+              if (p.plans && p.plans.some(pl => pl.oneTime)) tags.push('不限时');
               tags = tags.slice(0, 3);
 
               let bestForStr = Array.isArray(p.bestFor) ? p.bestFor.slice(0, 2).join(' / ') : '-';
               if (!bestForStr || bestForStr === '') bestForStr = '-';
 
-                  const meta = getProviderMeta(p);
-                  let numPrice = meta.lowestPriceValue;
+                  let numPrice = 9999;
+                  if (firstPlan) {
+                    let pMatch = (firstPlan.monthly || firstPlan.annual || firstPlan.oneTime || '').match(/[\d\.]+/);
+                    if (pMatch) numPrice = parseFloat(pMatch[0]);
+                  }
 
                   let numTraffic = 0;
                   if (startTraffic !== '-') {
@@ -624,7 +596,7 @@
               </div>
 
               <div class="mc-action">
-                <a href="#provider-<%= p.slug %>" class="mc-btn">查看详情 �?/a>
+                <a href="#provider-<%= p.slug %>" class="mc-btn">查看详情 →</a>
               </div>
             </div>
           <% }) %>
@@ -635,8 +607,8 @@
 
       <!-- Intent Sections -->
       <section id="cheap-airport" class="section-block intent-section">
-        <h2>2026 便宜机场推荐：�?0/月以内怎么选？</h2>
-        <p style="margin-bottom: 20px; color: #334155;">在选择便宜机场推荐时，建议不要只看月费绝对值，同时比较每月流量、线路质量、设备限制以及是否支�?AI 和流媒体。部分低价套餐可能是小流量包或有特定限制，购买前请仔细确认付款周期。本区只筛选当前资料中明确提供月付，并且月付价格不高于 ¥20 的套餐�?/p>
+        <h2>2026 便宜机场推荐：¥20/月以内怎么选？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">在选择便宜机场推荐时，建议不要只看月费绝对值，同时比较每月流量、线路质量、设备限制以及是否支持 AI 和流媒体。部分低价套餐可能是小流量包或有特定限制，购买前请仔细确认付款周期。本区只筛选当前资料中明确提供月付，并且月付价格不高于 ¥20 的套餐。</p>
         <div class="quick-buy-grid" style="margin-bottom: 20px;">
           <%
             const cheapList = [];
@@ -668,19 +640,19 @@
             <div class="card-body">
               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
               <div style="font-size: 0.95rem; margin-bottom: 5px;"><strong><%= pl.name %></strong></div>
-              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量�?%= pl.traffic || '-' %></div>
-              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= pl.monthly.replace('¥ ', '¥') %>/�?/div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量：<%= pl.traffic || '-' %></div>
+              <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= pl.monthly.replace('¥ ', '¥') %>/月</div>
               <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
             </div>
           </div>
           <% }); %>
         </div>
-        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">可在上方套餐筛选与品牌总对比表查看更多选项。以上仅根据机场湾当前收录套餐字段筛选，不构成品牌排名；价格、流量和服务规则可能调整，购买前请以对应服务页面为准�?/p>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">可在上方套餐筛选与品牌总对比表查看更多选项。以上仅根据机场湾当前收录套餐字段筛选，不构成品牌排名；价格、流量和服务规则可能调整，购买前请以对应服务页面为准。</p>
       </section>
 
       <section id="dedicated-airport" class="section-block intent-section">
         <h2>2026 稳定专线机场推荐：IPLC / IEPL 怎么选？</h2>
-        <p style="margin-bottom: 20px; color: #334155;">IPLC / IEPL 与普通公网中转在线路架构和路由方式上存在区别，部分用户会优先考虑标明 IPLC / IEPL 的套餐，希望获得相对稳定的线路体验。但需要注意的是，即便选择标明 IPLC 的稳定专线机场推荐，实际的延迟、速度、稳定性和可用性仍然会受到服务商线路配置、用户所在地区、运营商及当前网络环境的综合影响，并非绝对保证�?/p>
+        <p style="margin-bottom: 20px; color: #334155;">IPLC / IEPL 与普通公网中转在线路架构和路由方式上存在区别，部分用户会优先考虑标明 IPLC / IEPL 的套餐，希望获得相对稳定的线路体验。但需要注意的是，即便选择标明 IPLC 的稳定专线机场推荐，实际的延迟、速度、稳定性和可用性仍然会受到服务商线路配置、用户所在地区、运营商及当前网络环境的综合影响，并非绝对保证。</p>
         <div class="quick-buy-grid" style="margin-bottom: 20px;">
           <%
             const dedList = providers.filter(p => {
@@ -705,19 +677,19 @@
             <div class="card-body">
               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
               <div style="margin-bottom: 5px;"><span class="pill-badge pill-green"><%= tag %></span></div>
-              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">起步流量�?%= meta.startTraffic %></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">起步流量：<%= meta.startTraffic %></div>
               <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= meta.startPrice %></div>
               <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
             </div>
           </div>
           <% }); %>
         </div>
-        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">说明：本区仅列出在官方资料中明确包含 IPLC �?IEPL 描述的品牌，不代表排名先后，具体网络体验请以实际使用为准�?/p>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">说明：本区仅列出在官方资料中明确包含 IPLC 或 IEPL 描述的品牌，不代表排名先后，具体网络体验请以实际使用为准。</p>
       </section>
 
       <section id="large-traffic-airport" class="section-block intent-section">
         <h2>大流量机场推荐：500GB / 1TB 套餐怎么选？</h2>
-        <p style="margin-bottom: 20px; color: #334155;">对于需要观看高清视频、多设备共用、较多下载或较高频率网络使用的用户，寻找大流量机场推荐十分必要。需要根据个人的实际使用情况来决�?500GB �?1TB 是否够用，同时务必在购买前确认该流量是按月重置的周期流量，还是一次性的套餐总流量�?/p>
+        <p style="margin-bottom: 20px; color: #334155;">对于需要观看高清视频、多设备共用、较多下载或较高频率网络使用的用户，寻找大流量机场推荐十分必要。需要根据个人的实际使用情况来决定 500GB 或 1TB 是否够用，同时务必在购买前确认该流量是按月重置的周期流量，还是一次性的套餐总流量。</p>
         <div class="quick-buy-grid" style="margin-bottom: 20px;">
           <%
             const largeList = [];
@@ -740,9 +712,9 @@
               const pl = item.plan;
               const meta = getProviderMeta(p);
               let displayPrice = '-';
-              if(pl.monthly) displayPrice = pl.monthly.replace('¥ ', '¥') + '/�?;
-              else if(pl.quarterly) displayPrice = pl.quarterly.replace('¥ ', '¥') + '/�?;
-              else if(pl.annual) displayPrice = pl.annual.replace('¥ ', '¥') + '/�?;
+              if(pl.monthly) displayPrice = pl.monthly.replace('¥ ', '¥') + '/月';
+              else if(pl.quarterly) displayPrice = pl.quarterly.replace('¥ ', '¥') + '/季';
+              else if(pl.annual) displayPrice = pl.annual.replace('¥ ', '¥') + '/年';
               else if(pl.oneTime) displayPrice = pl.oneTime.replace('¥ ', '¥');
           %>
           <div class="card card-small">
@@ -752,19 +724,19 @@
             <div class="card-body">
               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
               <div style="font-size: 0.95rem; margin-bottom: 5px;"><strong><%= pl.name %></strong></div>
-              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量�?%= pl.traffic %></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量：<%= pl.traffic %></div>
               <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= displayPrice %></div>
               <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
             </div>
           </div>
           <% }); %>
         </div>
-        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">提示：此处筛选流�?&gt;= 500GB 的套餐。价格、流量规则及有效期限请以服务商官网标注为准，列表自然排序，不构成名次推荐�?/p>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">提示：此处筛选流量 &gt;= 500GB 的套餐。价格、流量规则及有效期限请以服务商官网标注为准，列表自然排序，不构成名次推荐。</p>
       </section>
 
       <section id="ai-airport" class="section-block intent-section">
         <h2>ChatGPT / Claude / Gemini 机场怎么选？</h2>
-        <p style="margin-bottom: 20px; color: #334155;">许多用户在寻找支�?ChatGPT机场�?AI机场。需要注意的是，AI 服务是否可正常使用，可能会受到地区限制、IP 类型、节点当前状态以�?AI 服务方政策变动的影响。部分品牌明确提供了相关解锁支持，但请注意这不代表永久可用，具体情况需以实际使用体验为准�?/p>
+        <p style="margin-bottom: 20px; color: #334155;">许多用户在寻找支持 ChatGPT机场或 AI机场。需要注意的是，AI 服务是否可正常使用，可能会受到地区限制、IP 类型、节点当前状态以及 AI 服务方政策变动的影响。部分品牌明确提供了相关解锁支持，但请注意这不代表永久可用，具体情况需以实际使用体验为准。</p>
         <div class="quick-buy-grid" style="margin-bottom: 20px;">
           <%
             const aiList = providers.filter(p => p.aiSupport === '支持 AI');
@@ -778,19 +750,19 @@
             <div class="card-body">
               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
               <div style="margin-bottom: 5px;"><span class="pill-badge pill-purple">支持 AI</span></div>
-              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">起步流量�?%= meta.startTraffic %></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">起步流量：<%= meta.startTraffic %></div>
               <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= meta.startPrice %></div>
               <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
             </div>
           </div>
           <% }); %>
         </div>
-        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">注意：上述品牌数据中明确标注了支�?AI，但实际可用性可能会随政策波动，购买前建议向商家确认最新状态�?/p>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">注意：上述品牌数据中明确标注了支持 AI，但实际可用性可能会随政策波动，购买前建议向商家确认最新状态。</p>
       </section>
 
       <section id="onetime-airport" class="section-block intent-section">
-        <h2>一次�?/ 不限时机场套餐怎么选？适合哪些用户�?/h2>
-        <p style="margin-bottom: 20px; color: #334155;">对于使用频率较低、不想每月固定付费，或者希望购买一批流量慢慢使用的用户，不限时机场或一次性流量套餐是很好的选择。但需要特别提醒：一次性付款不自动代表流量永久不过期，是否不限时以及有效期规则请以对应品牌购买页面说明为准�?/p>
+        <h2>一次性 / 不限时机场套餐怎么选？适合哪些用户？</h2>
+        <p style="margin-bottom: 20px; color: #334155;">对于使用频率较低、不想每月固定付费，或者希望购买一批流量慢慢使用的用户，不限时机场或一次性流量套餐是很好的选择。但需要特别提醒：一次性付款不自动代表流量永久不过期，是否不限时以及有效期规则请以对应品牌购买页面说明为准。</p>
         <div class="quick-buy-grid" style="margin-bottom: 20px;">
           <%
             const oneTimeList = [];
@@ -818,14 +790,14 @@
             <div class="card-body">
               <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="36" height="36" loading="lazy" decoding="async" style="object-fit:cover; border-radius:50%; margin-bottom:10px;">
               <div style="font-size: 0.95rem; margin-bottom: 5px;"><strong><%= pl.name %></strong></div>
-              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量�?%= pl.traffic || '-' %></div>
+              <div style="color: #64748b; font-size: 0.85rem; margin-bottom: 5px;">流量：<%= pl.traffic || '-' %></div>
               <div style="font-weight: bold; color: var(--c-primary); margin-bottom: 15px;"><%= pl.oneTime.replace('¥ ', '¥') %></div>
               <a href="#provider-<%= p.slug %>" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 6px;">查看详情</a>
             </div>
           </div>
           <% }); %>
         </div>
-        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">请务必在提供商网站核实“一次性”是否等同于“无使用期限”，部分套餐可能存在有效期限制，请以对应服务页面的实际规则为准�?/p>
+        <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">请务必在提供商网站核实“一次性”是否等同于“无使用期限”，部分套餐可能存在有效期限制，请以对应服务页面的实际规则为准。</p>
       </section>
 
       <!-- Brands Sections -->
@@ -833,7 +805,7 @@
     <% if (providers.length) { %>
       <% providers.forEach(function(p, index) { %>
         <% const firstPlan = p.plans && p.plans[0]; %>
-        <% const meta = getProviderMeta(p); const displayPrice = meta.startPrice; %>
+        <% const displayPrice = p.price || (firstPlan ? (firstPlan.monthly ? firstPlan.monthly + '/月起' : (firstPlan.annual ? firstPlan.annual + '/年' : (firstPlan.oneTime ? firstPlan.oneTime : '-'))) : '-'); %>
         <section id="provider-<%= p.slug %>" class="section-block provider-section">
           <div class="provider-header" style="justify-content: space-between; flex-wrap: wrap;">
             <div style="display:flex; align-items:center; gap:15px;">
@@ -848,20 +820,20 @@
                <% if (p.coupon && !p.coupon.includes('暂无优惠')) { %>
                  <div style="font-size:0.85rem; color:#f59e0b;">优惠码：<%= p.coupon %> · <%= p.couponDiscount || '优惠' %></div>
                <% } %>
-               <a href="<%= getPurchaseUrl(p) %>" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary btn-small">查看套餐 / 注册购买</a>
+               <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary btn-small">查看套餐 / 注册购买</a>
             </div>
           </div>
           <div class="provider-divider" style="border-bottom: 1px solid #e2e8f0; margin-top: 18px; margin-bottom: 24px;"></div>
           <div class="provider-meta">
             <span class="meta-item"><strong>价格:</strong> <%= displayPrice %></span>
-            <span class="meta-item"><strong>优惠�?</strong> <%= p.coupon %><%= p.couponDiscount ? (' (' + p.couponDiscount + ')') : '' %></span>
+            <span class="meta-item"><strong>优惠码:</strong> <%= p.coupon %><%= p.couponDiscount ? (' (' + p.couponDiscount + ')') : '' %></span>
             <span class="meta-item"><strong>AI 支持:</strong> <%= p.aiSupport %></span>
-            <span class="meta-item"><strong>流媒�?</strong> <%= p.streamingSupport %></span>
+            <span class="meta-item"><strong>流媒体:</strong> <%= p.streamingSupport %></span>
             <span class="meta-item"><strong>设备支持:</strong> <%= p.clientSupport %></span>
           </div>
           <% if (p.features && p.features.length) { %>
           <div class="provider-features" style="margin: 15px 0;">
-            <h4>核心优势与特�?/h4>
+            <h4>核心优势与特性</h4>
             <ul>
               <% p.features.forEach(function(adv) { %>
                 <li><%= adv %></li>
@@ -879,9 +851,9 @@
                   <th style="padding: 6px 10px; border: 1px solid #ddd;">流量</th>
                   <th style="padding: 6px 10px; border: 1px solid #ddd;">月付</th>
                   <th style="padding: 6px 10px; border: 1px solid #ddd;">季付</th>
-                  <th style="padding: 6px 10px; border: 1px solid #ddd;">半年�?/th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">半年付</th>
                   <th style="padding: 6px 10px; border: 1px solid #ddd;">年付</th>
-                  <th style="padding: 6px 10px; border: 1px solid #ddd;">一次�?不限�?/th>
+                  <th style="padding: 6px 10px; border: 1px solid #ddd;">一次性/不限时</th>
                 </tr>
               </thead>
               <tbody>
@@ -901,9 +873,9 @@
           </div>
           <% } %>
           <div class="provider-action" style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="<%= getPurchaseUrl(p) %>" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">查看套餐 / 注册购买</a>
+            <a href="<%= p.affUrl || p.officialUrl %>" target="_blank" rel="nofollow noopener" class="btn btn-primary">查看套餐 / 注册购买</a>
             <% if (p.macDownload) { %>
-              <a href="<%= p.macDownload %>" target="_blank" rel="nofollow noopener" class="btn mac-btn">Mac 客户端下�?/a>
+              <a href="<%= p.macDownload %>" target="_blank" rel="nofollow noopener" class="btn mac-btn">Mac 客户端下载</a>
             <% } %>
           </div>
         </section>
@@ -915,17 +887,17 @@
       <h2>如何选择适合自己的服务？</h2>
       <p>选择合适的服务主要取决于您的核心需求：</p>
       <ul>
-        <li><strong>日常查资料与看视频：</strong> 选择性价比高的常规线路，流量充足，价格实惠�?/li>
-        <li><strong>办公、视频或对线路稳定性要求较高：</strong> 可以优先关注标明 IPLC、IEPL 或其他专线架构的服务，同时结合预算、流量和节点地区进行选择�?/li>
-        <li><strong>更重视隐私政策：</strong> 购买前可以查看服务商公开的隐私说明、日志政策和运营信息�?/li>
+        <li><strong>日常查资料与看视频：</strong> 选择性价比高的常规线路，流量充足，价格实惠。</li>
+        <li><strong>办公、视频或对线路稳定性要求较高：</strong> 可以优先关注标明 IPLC、IEPL 或其他专线架构的服务，同时结合预算、流量和节点地区进行选择。</li>
+        <li><strong>更重视隐私政策：</strong> 购买前可以查看服务商公开的隐私说明、日志政策和运营信息。</li>
       </ul>
     </section>
 
     <!-- Knowledge -->
     <section id="knowledge" class="section-block">
       <h2>基础知识科普</h2>
-      <p><strong>什么是机场�?/strong> 机场通常指提供代理节点的服务商，因早期很多服务商使用飞机图标而得名�?/p>
-      <p><strong>专线是什么？</strong> IPLC 等专线通常用于跨境专用网络连接，其实际线路结构、稳定性和路由方式会因服务商方案而异。用户选购时应以服务商公开线路信息和实际套餐说明为准�?/p>
+      <p><strong>什么是机场？</strong> 机场通常指提供代理节点的服务商，因早期很多服务商使用飞机图标而得名。</p>
+      <p><strong>专线是什么？</strong> IPLC 等专线通常用于跨境专用网络连接，其实际线路结构、稳定性和路由方式会因服务商方案而异。用户选购时应以服务商公开线路信息和实际套餐说明为准。</p>
     </section>
 
     <!-- FAQ -->
@@ -941,23 +913,23 @@
 
     <!-- About -->
     <section id="about" class="section-block">
-      <h2>关于机场�?(JichangBay)</h2>
-      <p>机场湾用于集中整理网络服务品牌的套餐、线路、适用场景与优惠信息，方便用户进行横向比较和选择。页面内容会根据品牌套餐与服务信息变化持续更新�?/p>
+      <h2>关于机场湾 (JichangBay)</h2>
+      <p>机场湾用于集中整理网络服务品牌的套餐、线路、适用场景与优惠信息，方便用户进行横向比较和选择。页面内容会根据品牌套餐与服务信息变化持续更新。</p>
 
-      <p><strong>利益相关声明�?/strong><br>
-      本站收录的部分或全部品牌属于本站关联或自营服务。页面中的注册或购买链接可能包含内部追踪参数，用于统计来源及运营分析。购买前请以对应服务页面展示的套餐、价格与服务条款为准�?/p>
+      <p><strong>利益相关声明：</strong><br>
+      本站收录的部分或全部品牌属于本站关联或自营服务。页面中的注册或购买链接可能包含内部追踪参数，用于统计来源及运营分析。购买前请以对应服务页面展示的套餐、价格与服务条款为准。</p>
 
-      <h3>信息来源与维护原�?/h3>
-      <p>机场湾由 <a href="https://github.com/Colasaiko" target="_blank" rel="noopener">Colasaiko</a> 持续维护，负责页面资料整理、品牌信息更新与站点维护�?/p>
-      <p>页面中的套餐价格、流量、线路、优惠与服务信息，主要根据对应品牌当前公开的套餐页、购买页及服务说明整理。品牌套餐与服务内容可能调整，实际价格、优惠、节点和服务规则请以最终购买页面展示为准�?/p>
-      <p>当品牌公开套餐、价格、流量、线路或优惠信息发生变化时，机场湾会根据可获取的公开信息进行更新�?/p>
-      <p>如果发现套餐信息变更、优惠码失效、购买链接失效或页面资料有误，可以通过 <a href="mailto:colasaiko15@gmail.com">Email</a> �?<a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener">Telegram</a> 联系我们修正�?/p>
+      <h3>信息来源与维护原则</h3>
+      <p>机场湾由 <a href="https://github.com/Colasaiko" target="_blank" rel="noopener">Colasaiko</a> 持续维护，负责页面资料整理、品牌信息更新与站点维护。</p>
+      <p>页面中的套餐价格、流量、线路、优惠与服务信息，主要根据对应品牌当前公开的套餐页、购买页及服务说明整理。品牌套餐与服务内容可能调整，实际价格、优惠、节点和服务规则请以最终购买页面展示为准。</p>
+      <p>当品牌公开套餐、价格、流量、线路或优惠信息发生变化时，机场湾会根据可获取的公开信息进行更新。</p>
+      <p>如果发现套餐信息变更、优惠码失效、购买链接失效或页面资料有误，可以通过 <a href="mailto:colasaiko15@gmail.com">Email</a> 或 <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener">Telegram</a> 联系我们修正。</p>
     </section>
 
   <!-- Contact Section -->
     <section id="contact" class="section-block">
-      <h2>项目与联�?/h2>
-      <p style="margin-bottom: 24px; color: #334155;">如果你希望查看更多机场、Clash、VPN 与客户端相关资源，或需要反馈套餐变更、优惠失效、链接问题及其他资料错误，可以通过以下公开渠道联系机场湾�?/p>
+      <h2>项目与联系</h2>
+      <p style="margin-bottom: 24px; color: #334155;">如果你希望查看更多机场、Clash、VPN 与客户端相关资源，或需要反馈套餐变更、优惠失效、链接问题及其他资料错误，可以通过以下公开渠道联系机场湾。</p>
 
       <div class="contact-grid">
         <div class="contact-card">
@@ -966,7 +938,7 @@
           </div>
           <h3 class="contact-title">GitHub 公开项目</h3>
           <p class="contact-subtitle">Colasaiko/tuijianjichang</p>
-          <p class="contact-desc">机场推荐、Clash、VPN、代理客户端与相关网络资源的公开导航项目�?/p>
+          <p class="contact-desc">机场推荐、Clash、VPN、代理客户端与相关网络资源的公开导航项目。</p>
           <a href="https://github.com/Colasaiko/tuijianjichang" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">查看 GitHub 项目</a>
         </div>
 
@@ -976,8 +948,8 @@
           </div>
           <h3 class="contact-title">Email</h3>
           <p class="contact-subtitle">colasaiko15@gmail.com</p>
-          <p class="contact-desc">适合资料纠错、套餐变更反馈、链接问题、内容反馈与合作咨询�?/p>
-          <a href="mailto:colasaiko15@gmail.com" class="btn btn-outline" style="width:100%; justify-content:center;">发送邮�?/a>
+          <p class="contact-desc">适合资料纠错、套餐变更反馈、链接问题、内容反馈与合作咨询。</p>
+          <a href="mailto:colasaiko15@gmail.com" class="btn btn-outline" style="width:100%; justify-content:center;">发送邮件</a>
         </div>
 
         <div class="contact-card">
@@ -986,7 +958,7 @@
           </div>
           <h3 class="contact-title">Telegram</h3>
           <p class="contact-subtitle">@ColaSaiko15</p>
-          <p class="contact-desc">适合快速反馈资料变更、链接失效或其他站点相关问题�?/p>
+          <p class="contact-desc">适合快速反馈资料变更、链接失效或其他站点相关问题。</p>
           <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%; justify-content:center;">打开 Telegram</a>
         </div>
       </div>
@@ -1009,10 +981,10 @@
       <ul id="toc-list">
         <li><a href="#top" class="toc-link">首页</a></li>
         <li><a href="#recommendations" class="toc-link">快速选购</a></li>
-        <li><a href="#plan-filter" class="toc-link">套餐筛�?/a></li>
+        <li><a href="#plan-filter" class="toc-link">套餐筛选</a></li>
         <li><a href="#deals" class="toc-link">当前优惠</a></li>
-        <li><a href="#before-buy" class="toc-link">购买前确�?/a></li>
-        <li><a href="#comparison" class="toc-link">参数对比�?/a></li>
+        <li><a href="#before-buy" class="toc-link">购买前确认</a></li>
+        <li><a href="#comparison" class="toc-link">参数对比表</a></li>
         <% providers.forEach(function(p, index) { %>
           <li><a href="#provider-<%= p.slug %>" class="toc-link toc-child"><%= p.name %></a></li>
         <% }) %>
@@ -1020,9 +992,9 @@
         <li><a href="#knowledge" class="toc-link">基础知识</a></li>
         <li><a href="#faq" class="toc-link">常见问题</a></li>
         <li><a href="#about" class="toc-link">关于我们</a></li>
-        <li><a href="#contact" class="toc-link">项目与联�?/a></li>
+        <li><a href="#contact" class="toc-link">项目与联系</a></li>
       </ul>
-      <a href="#top" class="back-to-top">�?返回顶部</a>
+      <a href="#top" class="back-to-top">↑ 返回顶部</a>
     </div>
   </aside>
 
@@ -1032,7 +1004,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; 2026 机场�?JichangBay · <a href="https://github.com/Colasaiko/tuijianjichang" target="_blank" rel="noopener" style="color:#64748b; text-decoration:none;">GitHub</a> · <a href="mailto:colasaiko15@gmail.com" style="color:#64748b; text-decoration:none;">Email</a> · <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener" style="color:#64748b; text-decoration:none;">Telegram</a></p>
+    <p>&copy; 2026 机场湾 JichangBay · <a href="https://github.com/Colasaiko/tuijianjichang" target="_blank" rel="noopener" style="color:#64748b; text-decoration:none;">GitHub</a> · <a href="mailto:colasaiko15@gmail.com" style="color:#64748b; text-decoration:none;">Email</a> · <a href="https://t.me/ColaSaiko15" target="_blank" rel="noopener" style="color:#64748b; text-decoration:none;">Telegram</a></p>
   </div>
 </footer>
 
