@@ -644,6 +644,7 @@
   targetUrl: https://varnexa.twilightaff.com/#/?code=1eGqV85O
 - name: 九云
   slug: jiuyun
+  logo: /images/logos/jiuyun.jpg
   relationship: partner
   goUrl: /go/jiuyun/
   affUrl: /go/jiuyun/
@@ -730,6 +731,7 @@
   targetUrl: https://888.jiuyundl.com/#/register?code=RvrYuabu
 - name: 宝云
   slug: baoyun
+  logo: /images/logos/baoyun.jpg
   relationship: partner
   goUrl: /go/baoyun/
   affUrl: /go/baoyun/
