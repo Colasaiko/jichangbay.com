@@ -202,8 +202,8 @@
 
     <!-- Quick Buy Section -->
     <section id="recommendations" class="section-block">
-      <h2>2026 机场快速选购</h2>
-      <p style="margin-bottom: 20px; color: #334155;">按照预算与需求快速找到适合的稳定机场推荐、便宜机场推荐与专线机场推荐。无论你是需要按量计费、大流量套餐、小流量轻度使用，还是月付/年付机场，都可以在此直接查找。</p>
+      <h2>2026 机场购买与便宜机场快速选购</h2>
+      <p style="margin-bottom: 20px; color: #334155;">如果你正在寻找机场购买入口、便宜机场或特价机场，可以先根据真实月付价格、每月流量、线路类型和使用需求进行筛选。机场湾不把年付价格除以 12 伪装成月费，页面中的品牌代表价格优先使用当前明确提供的真实月付套餐。</p>
 
 
       <div class="quick-buy-grid">
@@ -233,6 +233,7 @@
       <div class="quick-tags-container" style="margin-top:24px;">
         <h4 style="margin-bottom:12px;font-size:1rem;">按需求快速找：</h4>
         <div class="quick-tags">
+          <button class="qt-btn" data-filter="budget-10">¥10/月以内</button>
           <button class="qt-btn" data-filter="budget-20">¥20/月以内</button>
           <button class="qt-btn" data-filter="budget-30">¥30/月以内</button>
           <button class="qt-btn" data-filter="budget-year">年付低价</button>
@@ -359,8 +360,8 @@
 
     <!-- Deals Section -->
     <section id="deals" class="section-block">
-      <h2>当前优惠与优惠码</h2>
-      <p style="margin-bottom: 20px; color: #334155;">这里集中整理目前数据中明确提供的优惠信息，具体活动以购买页面显示为准。</p>
+      <h2>2026 特价机场与优惠机场购买入口</h2>
+      <p style="margin-bottom: 20px; color: #334155;">这里整理当前品牌明确提供的优惠码、折扣及特价套餐信息，适合正在寻找特价机场、优惠机场或机场购买入口的用户。活动价格和优惠有效期可能变化，最终以购买页面显示为准。</p>
       <div class="deals-grid">
         <%
            const deals = providers.filter(p => p.coupon && !p.coupon.includes('暂无优惠'));
@@ -389,7 +390,7 @@
 
     <!-- Before Buy Section -->
     <section id="before-buy" class="section-block">
-      <h2>购买前建议确认</h2>
+      <h2>机场购买前建议确认</h2>
       <p style="margin-bottom: 24px; color: #334155;">不同品牌和套餐的计费方式、流量规则与支持能力可能不同，购买前建议先确认以下信息。</p>
       <div class="bb-grid">
         <div class="bb-card">
@@ -633,7 +634,7 @@
       <!-- Intent Sections -->
       <section id="cheap-airport" class="section-block intent-section">
         <h2>2026 便宜机场推荐：¥20/月以内怎么选？</h2>
-        <p style="margin-bottom: 20px; color: #334155;">在选择便宜机场推荐时，建议不要只看月费绝对值，同时比较每月流量、线路质量、设备限制以及是否支持 AI 和流媒体。部分低价套餐可能是小流量包或有特定限制，购买前请仔细确认付款周期。本区只筛选当前资料中明确提供月付，并且月付价格不高于 ¥20 的套餐。</p>
+        <p style="margin-bottom: 20px; color: #334155;">在选择便宜机场推荐时，建议不要只看月费绝对值，同时比较每月流量、线路质量、设备限制以及是否支持 AI 和流媒体。部分低价套餐可能是小流量包或有特定限制，购买前请仔细确认付款周期。本区只筛选当前资料中明确提供月付，并且月付价格不高于 ¥20 的套餐。寻找稳定便宜机场推荐时，不应只比较月费，还需要同时查看线路类型、流量限制、设备数量以及高峰期实际使用需求。</p>
         <div class="quick-buy-grid" style="margin-bottom: 20px;">
           <%
             const cheapList = [];
@@ -673,7 +674,35 @@
           <% }); %>
         </div>
         <p class="intent-note" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">可在上方套餐筛选与品牌总对比表查看更多选项。以上仅根据机场湾当前收录套餐字段筛选，不构成品牌排名；价格、流量和服务规则可能调整，购买前请以对应服务页面为准。</p>
-      </section>
+
+
+      <h3>10元以内特价机场：真实月付套餐</h3>
+      <p style="margin-bottom: 20px; color: #334155;">如果预算非常低，可以优先查看当前明确提供 ¥10/月以内真实月付的套餐。低价并不代表一定适合所有用户，购买前仍需要确认流量、节点、设备数量及服务规则。</p>
+
+      <div class="quick-buy-grid" style="margin-bottom: 40px;">
+        <%
+          const under10Providers = providers.filter(p => {
+            const m = getLowestMonthlyMeta(p);
+            return m && m.value <= 10;
+          });
+        %>
+        <% under10Providers.forEach(p => {
+             const m = getLowestMonthlyMeta(p);
+        %>
+          <div class="card card-small">
+            <div class="card-head">
+              <img src="<%= getProviderMeta(p).logoSrc %>" alt="<%= p.name %>" class="provider-logo" width="24" height="24" loading="lazy" decoding="async">
+              <strong><%= p.name %></strong>
+            </div>
+            <div class="card-stats">
+              <span><%= m.plainPrice %></span>
+              <span><%= m.plan.traffic %></span>
+            </div>
+            <a href="#provider-<%= p.slug %>" class="btn btn-outline btn-block">查看详情</a>
+          </div>
+        <% }) %>
+      </div>
+</section>
 
       <section id="dedicated-airport" class="section-block intent-section">
         <h2>2026 稳定专线机场推荐：IPLC / IEPL 怎么选？</h2>
@@ -938,7 +967,20 @@
         <p><%= item.a %></p>
       </div>
       <% }) %>
-    </section>
+
+          <div class="faq-item">
+            <h3 class="faq-q">特价机场和便宜机场有什么区别？</h3>
+            <div class="faq-a">特价机场通常指某个套餐或活动期间提供优惠价格，而便宜机场更多指长期月费较低的服务。选择时除了价格，还应比较流量、线路、设备限制和套餐有效期。</div>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">机场购买前应该先看价格还是流量？</h3>
+            <div class="faq-a">价格和流量都需要看。轻度使用可以优先考虑低价小流量套餐，经常观看视频、下载文件或多设备使用则需要更高流量。购买前还应确认线路、设备数量及优惠规则。</div>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">十元机场适合长期使用吗？</h3>
+            <div class="faq-a">部分 ¥10/月以内套餐适合轻度使用或预算有限的用户，但不同品牌在流量、线路、设备限制和服务规则上可能差异较大。是否适合长期使用应根据自己的实际需求决定。</div>
+          </div>
+</section>
 
     <!-- About -->
     <section id="about" class="section-block">
