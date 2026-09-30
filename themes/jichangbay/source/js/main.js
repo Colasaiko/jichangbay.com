@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const p = pSelect.value;
         bSelect.innerHTML = '<option value="all">不限</option>';
         if (p === 'monthly') {
-            bSelect.innerHTML += '<option value="20">¥20以内</option><option value="30">¥30以内</option><option value="50">¥50以内</option><option value="100">¥100以内</option>';
+            bSelect.innerHTML += '<option value="10">¥10以内</option><option value="20">¥20以内</option><option value="30">¥30以内</option><option value="50">¥50以内</option><option value="100">¥100以内</option>';
         } else if (p === 'annual') {
             bSelect.innerHTML += '<option value="100">¥100以内</option><option value="200">¥200以内</option><option value="300">¥300以内</option><option value="500">¥500以内</option>';
         } else if (p === 'onetime') {
@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 aiCheck.checked = false; streamCheck.checked = false; deviceCheck.checked = false; netCheck.checked = false;
                 
                 // Apply specific filter
+                if(f === 'budget-10') { pSelect.value = 'monthly'; updateBudgetOptions(); bSelect.value = '10'; }
                 if(f === 'budget-20') { pSelect.value = 'monthly'; updateBudgetOptions(); bSelect.value = '20'; }
                 if(f === 'budget-30') { pSelect.value = 'monthly'; updateBudgetOptions(); bSelect.value = '30'; }
                 if(f === 'budget-year') { pSelect.value = 'annual'; updateBudgetOptions(); bSelect.value = '100'; }

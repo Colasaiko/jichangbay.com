@@ -200,6 +200,117 @@
       </div>
     </section>
 
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section-block">
+      <h2>2026 机场套餐数据概览</h2>
+      <%
+        let countTotal = providers.length;
+        let countMonthly = 0;
+        let countUnder10 = 0;
+        let countUnder20 = 0;
+        let count500G = 0;
+        let countOneTime = 0;
+        let countCoupon = 0;
+        let countAi = 0;
+
+        let dist10 = 0;
+        let dist20 = 0;
+        let dist30 = 0;
+        let distOver30 = 0;
+        let distNoMonthly = 0;
+
+        providers.forEach(p => {
+          const m = getLowestMonthlyMeta(p);
+          if (m && m.value < 999999) {
+            countMonthly++;
+            if (m.value <= 10) countUnder10++;
+            if (m.value <= 20) countUnder20++;
+
+            if (m.value <= 10) dist10++;
+            else if (m.value <= 20) dist20++;
+            else if (m.value <= 30) dist30++;
+            else distOver30++;
+          } else {
+            distNoMonthly++;
+          }
+
+          let has500G = false;
+          let hasOneTime = false;
+          if (p.plans) {
+            p.plans.forEach(pl => {
+              if (pl.oneTime) hasOneTime = true;
+              const t = parseIntentTrafficGB(pl.traffic);
+              if (t >= 500) has500G = true;
+            });
+          }
+          if (has500G) count500G++;
+          if (hasOneTime) countOneTime++;
+
+          if (p.coupon && !p.coupon.includes('暂无优惠')) countCoupon++;
+          if (p.aiSupport && p.aiSupport.includes('支持 AI')) countAi++;
+        });
+      %>
+      <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-bottom: 40px;">
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countTotal %></div>
+          <div style="font-size:0.9rem; color:#64748b;">收录品牌</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countMonthly %></div>
+          <div style="font-size:0.9rem; color:#64748b;">有月付套餐</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countUnder10 %></div>
+          <div style="font-size:0.9rem; color:#64748b;">¥10/月以内</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countUnder20 %></div>
+          <div style="font-size:0.9rem; color:#64748b;">¥20/月以内</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= count500G %></div>
+          <div style="font-size:0.9rem; color:#64748b;">500GB+ 套餐</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countOneTime %></div>
+          <div style="font-size:0.9rem; color:#64748b;">一次性套餐</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countCoupon %></div>
+          <div style="font-size:0.9rem; color:#64748b;">有优惠码</div>
+        </div>
+        <div class="card" style="text-align:center; padding:16px;">
+          <div style="font-size:2rem; font-weight:bold; color:var(--c-primary);"><%= countAi %></div>
+          <div style="font-size:0.9rem; color:#64748b;">支持 AI</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px;">真实月付价格分布</h3>
+      <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px;">
+        <div class="card" style="padding:16px;">
+          <strong>¥10/月以内</strong>
+          <span class="pill-badge" style="float:right;"><%= dist10 %> 个品牌</span>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>¥11–20/月</strong>
+          <span class="pill-badge" style="float:right;"><%= dist20 %> 个品牌</span>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>¥21–30/月</strong>
+          <span class="pill-badge" style="float:right;"><%= dist30 %> 个品牌</span>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>¥30以上/月</strong>
+          <span class="pill-badge" style="float:right;"><%= distOver30 %> 个品牌</span>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>无月付</strong>
+          <span class="pill-badge" style="float:right;"><%= distNoMonthly %> 个品牌</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Quick Buy Section -->
     <section id="recommendations" class="section-block">
       <h2>2026 机场购买与便宜机场快速选购</h2>
@@ -245,6 +356,83 @@
           <button class="qt-btn" data-filter="multidevice">多设备</button>
           <button class="qt-btn" data-filter="iplc">专线线路</button>
         </div>
+      </div>
+    </section>
+
+
+    <!-- Budget Selection Section -->
+    <section id="budget-selection" class="section-block">
+      <h2>按预算选择机场套餐</h2>
+      <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 20px;">
+        <%
+          const budgets = [
+            { label: '¥10/月以内', max: 10, filterId: 'budget-10' },
+            { label: '¥20/月以内', max: 20, filterId: 'budget-20' },
+            { label: '¥30/月以内', max: 30, filterId: 'budget-30' }
+          ];
+
+          budgets.forEach(b => {
+            const matches = providers.filter(p => {
+              const m = getLowestMonthlyMeta(p);
+              return m && m.value <= b.max;
+            });
+        %>
+        <div class="card" style="padding:20px; display:flex; flex-direction:column;">
+          <h3 style="margin-top:0; color:var(--c-primary); display:flex; justify-content:space-between; align-items:center;">
+            <%= b.label %>
+            <span class="pill-badge"><%= matches.length %> 个</span>
+          </h3>
+          <ul style="list-style:none; padding:0; margin:16px 0; color:#334155; font-size:0.9rem;">
+            <% matches.slice(0, 5).forEach(m => { %>
+              <li style="margin-bottom:8px; display:flex; justify-content:space-between;">
+                <span><%= m.name %></span>
+                <strong><%= getLowestMonthlyMeta(m).plainPrice %></strong>
+              </li>
+            <% }); %>
+          </ul>
+          <button class="btn btn-outline btn-block qt-btn" data-filter="<%= b.filterId %>" style="margin-top:auto;" onclick="window.scrollTo({top: document.getElementById('comparison').offsetTop - 80, behavior: 'smooth'});">应用筛选 / 查看全部</button>
+        </div>
+        <% }); %>
+      </div>
+    </section>
+
+
+    <!-- Traffic Selection Section -->
+    <section id="traffic-selection" class="section-block">
+      <h2>按流量选择机场套餐</h2>
+      <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 20px;">
+        <%
+          const trafficGroups = [
+            { label: '100–200GB', min: 100, max: 200, filterId: 'traffic-200' },
+            { label: '200–500GB', min: 200, max: 500, filterId: 'traffic-200' },
+            { label: '500GB–1TB', min: 500, max: 1024, filterId: 'traffic-500' },
+            { label: '1TB+', min: 1024, max: 999999, filterId: 'traffic-500' }
+          ];
+
+          trafficGroups.forEach(tg => {
+            const matches = providers.filter(p => {
+              if (!p.plans) return false;
+              return p.plans.some(pl => {
+                const t = parseIntentTrafficGB(pl.traffic);
+                return t >= tg.min && t < tg.max;
+              });
+            });
+        %>
+        <div class="card" style="padding:20px; display:flex; flex-direction:column;">
+          <h3 style="margin-top:0; color:var(--c-primary); display:flex; justify-content:space-between; align-items:center;">
+            <%= tg.label %>
+            <span class="pill-badge"><%= matches.length %> 个</span>
+          </h3>
+          <ul style="list-style:none; padding:0; margin:16px 0; color:#334155; font-size:0.9rem;">
+            <% matches.slice(0, 5).forEach(m => { %>
+              <li style="margin-bottom:8px; display:flex; justify-content:space-between;">
+                <span><%= m.name %></span>
+              </li>
+            <% }); %>
+          </ul>
+          <button class="btn btn-outline btn-block qt-btn" data-filter="<%= tg.filterId %>" style="margin-top:auto;" onclick="window.scrollTo({top: document.getElementById('comparison').offsetTop - 80, behavior: 'smooth'});">应用筛选 / 查看全部</button>
+        </div>
+        <% }); %>
       </div>
     </section>
 
@@ -385,7 +573,48 @@
 
         <% }) %>
       </div>
-    </section>
+
+      <h3 style="margin-top: 40px;">当前特价与优惠记录表</h3>
+      <div class="table-responsive">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>品牌</th>
+              <th>优惠码</th>
+              <th>折扣</th>
+              <th>最低真实月付</th>
+              <th>资料更新时间</th>
+              <th>购买入口</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%
+              const activeDeals = providers.filter(p => p.coupon && !p.coupon.includes('暂无优惠'));
+              activeDeals.forEach(p => {
+                const meta = getProviderMeta(p);
+                const m = getLowestMonthlyMeta(p);
+            %>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="24" height="24" style="border-radius:4px;">
+                  <strong><%= p.name %></strong>
+                </div>
+              </td>
+              <td><span class="pill-badge" style="background:#fef3c7; color:#d97706; font-family:monospace;"><%= p.coupon %></span></td>
+              <td><%= p.couponDiscount || '未知' %></td>
+              <td><%= m ? m.plainPrice : '无月付' %></td>
+              <td><%= p.updatedAt || '未知' %></td>
+              <td>
+                <a href="<%= p.affUrl %>" target="_blank" rel="noopener nofollow" class="btn btn-primary" style="padding: 4px 12px; font-size: 0.8rem;">前往购买</a>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; text-align: center; margin-top: 16px;">优惠码、折扣和适用套餐可能随品牌活动调整，结算前请以实际购买页面显示结果为准。</p>
+</section>
 
 
     <!-- Before Buy Section -->
@@ -701,6 +930,53 @@
             <a href="#provider-<%= p.slug %>" class="btn btn-outline btn-block">查看详情</a>
           </div>
         <% }) %>
+      </div>
+
+      <h3 style="margin-top: 40px;">当前真实低价月付套餐</h3>
+      <div class="table-responsive">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>品牌</th>
+              <th>最低月付</th>
+              <th>对应流量</th>
+              <th>线路</th>
+              <th>设备支持</th>
+              <th>优惠码</th>
+              <th>资料更新时间</th>
+              <th>详情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%
+              const under20Providers = providers.map(p => {
+                const m = getLowestMonthlyMeta(p);
+                return { p, m };
+              }).filter(item => item.m && item.m.value <= 20).sort((a, b) => a.m.value - b.m.value);
+
+              under20Providers.forEach(item => {
+                const p = item.p;
+                const m = item.m;
+                const meta = getProviderMeta(p);
+            %>
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <img src="<%= meta.logoSrc %>" alt="<%= p.name %>" width="24" height="24" style="border-radius:4px;">
+                  <strong><%= p.name %></strong>
+                </div>
+              </td>
+              <td style="color:var(--c-primary); font-weight:bold;"><%= m.plainPrice %></td>
+              <td><%= m.plan.traffic %></td>
+              <td><%= meta.network %></td>
+              <td><%= p.clientSupport || '未知' %></td>
+              <td><%= p.coupon || '暂无' %></td>
+              <td><%= p.updatedAt || '未知' %></td>
+              <td><a href="#provider-<%= p.slug %>" class="btn btn-outline" style="padding: 4px 12px; font-size: 0.8rem;">查看</a></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
 </section>
 
@@ -1051,7 +1327,12 @@
       <h3>目录</h3>
       <ul id="toc-list">
         <li><a href="#top" class="toc-link">首页</a></li>
+
+        <li><a href="#dashboard" class="toc-link">数据概览</a></li>
         <li><a href="#recommendations" class="toc-link">快速选购</a></li>
+        <li><a href="#budget-selection" class="toc-link">按预算选择</a></li>
+        <li><a href="#traffic-selection" class="toc-link">按流量选择</a></li>
+
         <li><a href="#plan-filter" class="toc-link">套餐筛选</a></li>
         <li><a href="#deals" class="toc-link">当前优惠</a></li>
         <li><a href="#before-buy" class="toc-link">购买前确认</a></li>
